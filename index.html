@@ -336,7 +336,7 @@
                         <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">CONTACT REPRESENTATIVES</h4>
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
-                                <thead class="bg-navyDark text-white uppercase tracking-wider">
+                                <head class="bg-navyDark text-white uppercase tracking-wider">
                                     <tr>
                                         <th class="border border-gray-800 p-2 font-bold">Role</th>
                                         <th class="border border-gray-800 p-2">Full Name</th>
@@ -371,7 +371,7 @@
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
-                                <thead class="bg-navyDark text-white uppercase tracking-wider">
+                                <head class="bg-navyDark text-white uppercase tracking-wider">
                                     <tr>
                                         <th class="border border-gray-800 p-2 text-center w-12">#</th>
                                         <th class="border border-gray-800 p-2">Player Full Name</th>
@@ -485,8 +485,9 @@
                                     <span>CAPTAIN SIGNATURE</span>
                                     <button type="button" onclick="clearCanvas('captainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
                                 </div>
-                                <div class="bg-navyDark border border-gray-800 rounded p-1">
-                                    <canvas id="captainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
+                                <div class="bg-navyDark border border-gray-800 rounded p-1 relative min-h-[110px]">
+                                    <canvas id="captainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair block"></canvas>
+                                    <img id="captainSignatureImage" class="absolute inset-1 w-[calc(100%-8px)] h-24 bg-navyDark rounded hidden object-contain">
                                 </div>
                             </div>
                             
@@ -495,8 +496,9 @@
                                     <span>VICE-CAPTAIN SIGNATURE</span>
                                     <button type="button" onclick="clearCanvas('viceCaptainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
                                 </div>
-                                <div class="bg-navyDark border border-gray-800 rounded p-1">
-                                    <canvas id="viceCaptainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
+                                <div class="bg-navyDark border border-gray-800 rounded p-1 relative min-h-[110px]">
+                                    <canvas id="viceCaptainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair block"></canvas>
+                                    <img id="viceCaptainSignatureImage" class="absolute inset-1 w-[calc(100%-8px)] h-24 bg-navyDark rounded hidden object-contain">
                                 </div>
                             </div>
                         </div>
@@ -534,6 +536,11 @@
 
     <script>
         // --- MULTI-DEVICE CANVAS DRAWING LOGIC ---
+        const canvasStates = {
+            captainCanvas: false,
+            viceCaptainCanvas: false
+        };
+
         function setupCanvas(id) {
             const canvas = document.getElementById(id);
             const ctx = canvas.getContext('2d');
@@ -559,6 +566,7 @@
                 ctx.beginPath();
                 const coords = getCoordinates(e);
                 ctx.moveTo(coords.x, coords.y);
+                canvasStates[id] = true;
             });
             canvas.addEventListener('mouseup', () => { drawing = false; ctx.beginPath(); });
             canvas.addEventListener('mouseleave', () => { drawing = false; ctx.beginPath(); });
@@ -577,6 +585,7 @@
                 ctx.beginPath();
                 const coords = getCoordinates(e);
                 ctx.moveTo(coords.x, coords.y);
+                canvasStates[id] = true;
                 e.preventDefault();
             });
             canvas.addEventListener('touchend', () => { drawing = false; ctx.beginPath(); });
@@ -596,9 +605,17 @@
             const canvas = document.getElementById(id);
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            canvasStates[id] = false;
+            
+            // Sync image element clear
+            const imgId = id === 'captainCanvas' ? 'captainSignatureImage' : 'viceCaptainSignatureImage';
+            const imgEl = document.getElementById(imgId);
+            imgEl.src = '';
+            imgEl.classList.add('hidden');
+            canvas.classList.remove('hidden');
         }
 
-        // --- FILE SELECTION & PREVIEW (FIXED & BULLETPROOF) ---
+        // --- FILE SELECTION & PREVIEW ---
         function triggerFileSelect() {
             const uploadField = document.getElementById('popUpload');
             if (uploadField) {
@@ -659,6 +676,23 @@
             const subRows = document.querySelectorAll('.sub-row');
             subRows.forEach(row => row.classList.remove('hidden'));
 
+            // CONVERT REAL-TIME SIGNATURE CANVASES TO STATIC IMAGES SO THEY CAN BE RENDERED IN HTML2PDF
+            const capCanvas = document.getElementById('captainCanvas');
+            const capImg = document.getElementById('captainSignatureImage');
+            if (canvasStates['captainCanvas']) {
+                capImg.src = capCanvas.toDataURL('image/png');
+                capImg.classList.remove('hidden');
+                capCanvas.classList.add('hidden');
+            }
+
+            const vcCanvas = document.getElementById('viceCaptainCanvas');
+            const vcImg = document.getElementById('viceCaptainSignatureImage');
+            if (canvasStates['viceCaptainCanvas']) {
+                vcImg.src = vcCanvas.toDataURL('image/png');
+                vcImg.classList.remove('hidden');
+                vcCanvas.classList.add('hidden');
+            }
+
             const element = document.getElementById('pdfContent');
             const opt = {
                 margin:       [10, 10, 10, 10], 
@@ -672,6 +706,12 @@
                 const pdfWorker = html2pdf().set(opt).from(element);
                 await pdfWorker.save();
                 const pdfBlob = await pdfWorker.output('blob');
+
+                // RESTORE GRAPHICS POST-COMPILE FOR INTERACTIVE PAGE VIEW
+                capImg.classList.add('hidden');
+                capCanvas.classList.remove('hidden');
+                vcImg.classList.add('hidden');
+                vcCanvas.classList.remove('hidden');
 
                 document.getElementById('hsTeamName').value = teamName;
                 document.getElementById('hsDivision').value = preferredDivision;
@@ -705,6 +745,13 @@
 
             } catch (err) {
                 console.error(err);
+                
+                // RESTORE GRAPHICS ON FAIL
+                capImg.classList.add('hidden');
+                capCanvas.classList.remove('hidden');
+                vcImg.classList.add('hidden');
+                vcCanvas.classList.remove('hidden');
+
                 btn.disabled = false;
                 btn.innerHTML = `<span>❌ Error. Tap to try again</span>`;
                 btn.style.opacity = '1';
