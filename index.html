@@ -1,10 +1,12 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windsor Sports Centre - 5-A-Side Official Pack</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -26,7 +28,6 @@
         }
     </script>
     <style>
-        /* Custom scrollbar to keep up the sleek neon aesthetic */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -41,487 +42,468 @@
             background: #2eff00;
         }
         
-        /* Print styles to make the PDF look pristine */
-        @media print {
-            body {
-                background: white !important;
-                color: black !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .print-card {
-                background: white !important;
-                color: black !important;
-                border: 1px solid #000 !important;
-                box-shadow: none !important;
-            }
-            .print-text-neon {
-                color: black !important;
-                text-shadow: none !important;
-            }
-            .print-bg-neon {
-                background-color: #f3f4f6 !important;
-                color: black !important;
-            }
-            input, select, textarea {
-                border: none !important;
-                border-bottom: 1px solid #000 !important;
-                background: transparent !important;
-                color: black !important;
-            }
-            .page-break {
-                page-break-before: always;
-            }
-            canvas {
-                border: 1px solid #000 !important;
-                background: white !important;
-            }
+        /* PDF specific overrides to ensure beautiful rendering */
+        .pdf-page {
+            background-color: #070B19 !important;
+            color: #f3f4f6 !important;
         }
     </style>
 </head>
 <body class="bg-navyDark text-gray-100 font-sans selection:bg-neonGreen selection:text-black">
 
     <div class="no-print bg-pitchBlack border-b border-neonGreen/30 sticky top-0 z-50 px-4 py-3 shadow-lg">
-        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-neonGreen animate-pulse"></span>
                 <p class="text-xs sm:text-sm font-semibold tracking-wide uppercase text-gray-300">
-                    Canva Styling Live Preview • Interactive Registration Form
+                    5-A-Side Football Registration Portal
                 </p>
             </div>
-            <div class="flex gap-2">
-                <button onclick="window.print()" class="bg-neonGreen hover:bg-neonGreenHover text-black font-bold px-4 py-1.5 rounded text-sm tracking-wider uppercase transition-all duration-200 shadow-md shadow-neonGreen/20">
-                    🖨️ Print / Save PDF
-                </button>
-            </div>
+            <span class="text-xs text-neonGreen font-mono uppercase bg-neonGreen/10 px-2.5 py-1 rounded">
+                Formspree Active
+            </span>
         </div>
     </div>
 
-    <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-12">
+    <div id="pdfContent">
+        <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-12">
 
-        <div class="text-center space-y-4 py-6 border-b border-neonGreen/20">
-            <p class="text-neonGreen tracking-[0.3em] uppercase font-black text-sm md:text-base">OFFICIAL LEAGUE RELEASE</p>
-            <h1 class="text-5xl md:text-7xl font-sports tracking-tight text-white uppercase italic leading-none drop-shadow-[0_4px_12px_rgba(57,255,20,0.15)]">
-                WINDSOR <span class="text-neonGreen">SPORTS CENTRE</span>
-            </h1>
-            <h2 class="text-xl md:text-2xl font-bold uppercase tracking-wider text-gray-300">
-                5-A-Side Football League Official Rulebook & Registration Pack
-            </h2>
-            <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold uppercase tracking-widest text-gray-400 pt-2">
-                <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">📍 Windsor Sports Centre</span>
-                <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">🏆 R3,000 Grand Prize</span>
-                <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">📅 Starts Aug 2026</span>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="md:col-span-2 space-y-6">
-                <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-4 print-card shadow-lg shadow-black/50">
-                    <div class="flex items-center gap-3">
-                        <span class="text-neonGreen text-xl font-bold">1.0</span>
-                        <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">LEAGUE OVERVIEW & STRUCTURE</h3>
-                    </div>
-                    <p class="text-gray-300 text-sm md:text-base leading-relaxed">
-                        The Windsor Sports Centre 5-A-Side Football League is established to promote highly competitive, safe, and professionally structured local football. By registering a team, all squad managers, players, and associates completely agree to follow and enforce the competition guidelines and codes of conduct detailed below.
-                    </p>
-
-                    <div class="mt-6 border-t border-gray-800 pt-4 space-y-3">
-                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest">DIVISIONS & TEAMS</h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <div class="bg-navyDark border border-gray-800 p-3 rounded-lg flex items-center gap-3">
-                                <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
-                                <div>
-                                    <p class="font-bold text-white text-sm">Windsor Premier League</p>
-                                    <p class="text-xs text-gray-400">10 Elite Division Teams</p>
-                                </div>
-                            </div>
-                            <div class="bg-navyDark border border-gray-800 p-3 rounded-lg flex items-center gap-3">
-                                <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
-                                <div>
-                                    <p class="font-bold text-white text-sm">Windsor Championship</p>
-                                    <p class="text-xs text-gray-400">10 Secondary Tier Teams</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="space-y-6">
-                <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 space-y-6 print-card shadow-xl shadow-neonGreen/5">
-                    <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen text-center border-b border-neonGreen/20 pb-3">
-                        FINANCIAL COMMITMENTS
-                    </h3>
-                    
-                    <div class="text-center space-y-1">
-                        <p class="text-xs text-gray-400 uppercase tracking-widest">Team Registration Fee</p>
-                        <p class="text-3xl font-sports text-white">R1,400</p>
-                        <p class="text-[10px] text-gray-500 italic">EFT or Cash cleared to secure slot</p>
-                    </div>
-
-                    <div class="text-center space-y-1 border-t border-gray-800 pt-4">
-                        <p class="text-xs text-gray-400 uppercase tracking-widest">Match Fee</p>
-                        <p class="text-2xl font-sports text-white">R100</p>
-                        <p class="text-[10px] text-gray-500 italic">Payable to official prior to kickoff</p>
-                    </div>
-
-                    <div class="bg-neonGreen text-black p-4 rounded-lg text-center space-y-1 shadow-md shadow-neonGreen/10">
-                        <p class="text-xs uppercase tracking-widest font-bold opacity-80">League Champions Prize</p>
-                        <p class="text-3xl font-sports font-black">R3,000</p>
-                        <p class="text-[10px] font-bold opacity-70 uppercase tracking-wider">Cash Grand Prize</p>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 print-card shadow-lg shadow-black/50">
-            <div class="flex items-center gap-3">
-                <span class="text-neonGreen text-xl font-bold">2.0</span>
-                <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">TEAM ROSTERS & MATCH SCHEDULING</h3>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Squad Composition</h4>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-start gap-2.5">
-                            <span class="text-neonGreen mt-0.5">✔</span>
-                            <span><strong>Roster Size:</strong> Register between 5 and 10 players maximum per team.</span>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="text-neonGreen mt-0.5">✔</span>
-                            <span><strong>Active Play:</strong> A maximum of 5 active players (including the goalkeeper) on court.</span>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="text-neonGreen mt-0.5">✔</span>
-                            <span><strong>Rolling Subs:</strong> Dynamic swaps allowed. Exiting player must fully exit the touchline before substitute enters.</span>
-                        </li>
-                    </ul>
+            <div class="text-center space-y-4 py-6 border-b border-neonGreen/20">
+                <p class="text-neonGreen tracking-[0.3em] uppercase font-black text-sm md:text-base">OFFICIAL LEAGUE RELEASE</p>
+                <h1 class="text-5xl md:text-7xl font-sports tracking-tight text-white uppercase italic leading-none drop-shadow-[0_4px_12px_rgba(57,255,20,0.15)]">
+                    WINDSOR <span class="text-neonGreen">SPORTS CENTRE</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl font-bold uppercase tracking-wider text-gray-300">
+                    5-A-Side Football League Official Rulebook & Registration Pack
+                </h2>
+                <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold uppercase tracking-widest text-gray-400 pt-2">
+                    <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">📍 Windsor Sports Centre</span>
+                    <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">🏆 R3,000 Grand Prize</span>
+                    <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">📅 Starts Aug 2026</span>
                 </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Match Times & Rules</h4>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li class="flex items-start gap-2.5">
-                            <span class="text-neonGreen mt-0.5">✔</span>
-                            <span><strong>Weekly Fixtures:</strong> Played Monday through Thursday (18:00 - 21:00).</span>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="text-neonGreen mt-0.5">✔</span>
-                            <span><strong>Match Duration:</strong> Two 20-minute halves divided by a 5-minute halftime.</span>
-                        </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="text-neonGreen mt-0.5">✔</span>
-                            <span><strong>Forfeit Rule:</strong> Teams must arrive 15 mins early. If 4 players are not fielded within 10 mins of start time, a forfeit is triggered (3-0 loss).</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bg-navyDark border border-neonGreen/20 rounded-lg p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
-                <div class="border-b sm:border-b-0 sm:border-r border-gray-800 pb-2 sm:pb-0">
-                    <p class="text-xs uppercase text-gray-400 tracking-wider">Registration Deadline</p>
-                    <p class="text-lg font-bold text-neonGreen">25 July 2026</p>
-                </div>
-                <div>
-                    <p class="text-xs uppercase text-gray-400 tracking-wider">League Kick-off</p>
-                    <p class="text-lg font-bold text-white">Early August 2026</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 print-card shadow-lg shadow-black/50">
-            <div class="flex items-center gap-3">
-                <span class="text-neonGreen text-xl font-bold">3.0</span>
-                <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">GENERAL GAMEPLAY REGULATIONS</h3>
-            </div>
-
-            <div class="bg-red-950/40 border-l-4 border-red-500 p-4 rounded-r-lg space-y-1">
-                <p class="text-xs uppercase tracking-widest font-black text-red-400 flex items-center gap-2">
-                    🚨 CRITICAL SAFETY DIRECTIVE
-                </p>
-                <p class="text-sm text-gray-200">
-                    <strong>No Slide Tackling:</strong> Sliding along the ground to challenge, intercept, or tackle an opponent is <strong>strictly banned</strong>. Any violation results in an immediate <strong>Yellow Card (2-minute suspension)</strong> and an indirect free kick awarded to the opposing side. Hard physical contact, excessive shoulder-charging, and pushing are heavily penalized.
-                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="space-y-2">
-                    <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.1 Equipment & Uniform</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Matches are executed utilizing a regulation **Size 5 football**. All players must wear flat-soled indoor football shoes or standard running takkies. Outdoor cleats or metal-studded boots are **strictly prohibited**.
-                    </p>
-                </div>
-
-                <div class="space-y-2">
-                    <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.2 Corner Shielding Limit</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Players shielding or handling the ball in the corner circle have exactly **5 seconds** (called aloud by referee) to cleanly pass the ball or exit. Over-shielding results in immediate turnover.
-                    </p>
-                </div>
-
-                <div class="space-y-2">
-                    <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.3 The 5-Second Restart</h4>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        All set-pieces and restarts (kick-ins, free kicks, corners, goalie clearance throws) must be executed within **5 seconds** from whistle. Defending walls must stand at least **5 paces (meters)** back.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 print-card shadow-lg shadow-black/50 space-y-4">
-                <div class="flex items-center gap-3">
-                    <span class="text-neonGreen text-lg font-bold">4.0</span>
-                    <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen">GOALKEEPER REGULATIONS</h3>
-                </div>
-                <div class="space-y-3 text-xs md:text-sm text-gray-300">
-                    <p>
-                        ⚽ <strong>Tactical Back-Pass:</strong> Strictly **one (1) back-pass** per half is permitted. Additional passes award an indirect free-kick to the opposition from the outer edge of the penalty box.
-                    </p>
-                    <p>
-                        ⚽ <strong>Area of Play:</strong> Hands can only be used inside the penalty box. Goalie must release/distribute the ball within **5 seconds** of gaining control.
-                    </p>
-                    <p>
-                        ⚽ <strong>Clean Saves:</strong> Goalkeepers can slide *only* to block a shot or save inside their penalty area, provided the challenge is clean and doesn't show studs.
-                    </p>
-                    <p>
-                        ⚽ <strong>Scoring:</strong> Goals scored directly by the goalkeeper must be kicked along the ground. Launching or throwing the ball by hand does not count as a valid score.
-                    </p>
-                </div>
-            </section>
-
-            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 print-card shadow-lg shadow-black/50 space-y-4">
-                <div class="flex items-center gap-3">
-                    <span class="text-neonGreen text-lg font-bold">5.0</span>
-                    <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen">DISCIPLINARY CODE & KICKS</h3>
-                </div>
-                <div class="space-y-3 text-xs md:text-sm text-gray-300">
-                    <p>
-                        ⚽ <strong>No Run-Up Penalty:</strong> All penalty kicks must be executed from a static, stationary stance. The non-striking foot must remain planted flat beside the ball.
-                    </p>
-                    <p>
-                        🟨 <span class="text-yellow-400 font-bold">Yellow Card:</span> Carries an automatic **2-minute temporary suspension (Sin Bin)**. Team plays down a player for the duration.
-                    </p>
-                    <p>
-                        🟥 <span class="text-red-500 font-bold">Red Card:</span> Immediate ejection for the remainder of the match. Triggers an automatic **1-game suspension** covering the next scheduled fixture.
-                    </p>
-                    <p>
-                        🛑 <strong>Conduct & Referee:</strong> Fighting, verbal abuse, coarse language, or official intimidation will cause immediate expulsion. **The referee's decision is final.**
-                    </p>
-                </div>
-            </section>
-        </div>
-
-        <section class="page-break bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 md:p-8 space-y-6 print-card shadow-xl shadow-neonGreen/5">
-            <div class="text-center space-y-2 border-b border-gray-800 pb-4">
-                <span class="bg-neonGreen text-black text-[10px] font-black px-2 py-0.5 rounded tracking-widest uppercase">PAGE 4</span>
-                <h3 class="text-3xl font-sports uppercase tracking-wider text-white">OFFICIAL TEAM REGISTRATION FORM</h3>
-                <p class="text-xs text-gray-400 italic">Please complete in block letters and submit to the office with proof of payment.</p>
-            </div>
-
-            <div class="space-y-4">
-                <h4 class="text-sm font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">SQUAD DETAILS</h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-xs font-semibold text-gray-300">TEAM NAME</label>
-                        <input type="text" placeholder="Enter Team Name..." class="w-full bg-navyDark border border-gray-800 focus:border-neonGreen outline-none text-white px-3 py-2 rounded text-sm transition-all">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-xs font-semibold text-gray-300">PREFERRED DIVISION</label>
-                        <select class="w-full bg-navyDark border border-gray-800 focus:border-neonGreen outline-none text-white px-3 py-2 rounded text-sm transition-all">
-                            <option value="" disabled selected>-- Select One --</option>
-                            <option value="premier">Windsor Premier League</option>
-                            <option value="championship">Windsor Championship League</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">CONTACT REPRESENTATIVES</h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
-                        <thead class="bg-navyDark text-white uppercase tracking-wider">
-                            <tr>
-                                <th class="border border-gray-800 p-2 font-bold">Role</th>
-                                <th class="border border-gray-800 p-2">Full Name</th>
-                                <th class="border border-gray-800 p-2">Cell Phone Number</th>
-                                <th class="border border-gray-800 p-2">Email Address</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="border border-gray-800 p-2 font-bold text-neonGreen">Captain</td>
-                                <td class="border border-gray-800 p-2"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-2"><input type="tel" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-2"><input type="email" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-2 font-bold text-neonGreen">Vice-Captain</td>
-                                <td class="border border-gray-800 p-2"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-2"><input type="tel" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-2"><input type="email" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">OFFICIAL PLAYER ROSTER (MIN 5 / MAX 10)</h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
-                        <thead class="bg-navyDark text-white uppercase tracking-wider">
-                            <tr>
-                                <th class="border border-gray-800 p-2 text-center w-12">#</th>
-                                <th class="border border-gray-800 p-2">Player Full Name</th>
-                                <th class="border border-gray-800 p-2">South African ID / Passport / Birth Certificate No.</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-800/50">
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">1</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">2</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">3</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">4</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">5</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">6</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">7</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">8</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">9</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">10</td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="space-y-4">
-                <h4 class="text-sm font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">PAYMENT DETAILS & INSTRUCTIONS</h4>
-                <p class="text-xs text-gray-300">
-                    The registration fee of <strong class="text-white">R1,400</strong> must be paid in full to secure your league spot.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-navyDark border border-neonGreen/20 p-4 rounded-lg space-y-3">
-                        <p class="text-xs font-bold text-neonGreen uppercase">Option 1: Electronic Funds Transfer (EFT)</p>
-                        <p class="text-[11px] text-gray-400 italic leading-snug">
-                            💡 You can pay from <strong>ANY</strong> bank app (Capitec, Standard Bank, ABSA, Nedbank, TymeBank, etc.) directly into our FNB account below:
-                        </p>
-                        <div class="text-xs space-y-1 text-gray-300">
-                            <p><strong>Account Holder:</strong> Windsor Sports Center (Pty) Ltd</p>
-                            <p><strong>Bank:</strong> First National Bank (FNB)</p>
-                            <p><strong>Account Number:</strong> 63132137919</p>
-                            <p><strong>Branch Code:</strong> 210554</p>
-                            <p><strong>Reference:</strong> <span class="bg-black px-1.5 py-0.5 rounded text-neonGreen font-mono select-all">[Your Team Name] - 5aside</span></p>
+                <div class="md:col-span-2 space-y-6">
+                    <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-4 shadow-lg shadow-black/50">
+                        <div class="flex items-center gap-3">
+                            <span class="text-neonGreen text-xl font-bold">1.0</span>
+                            <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">LEAGUE OVERVIEW & STRUCTURE</h3>
                         </div>
+                        <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+                            The Windsor Sports Centre 5-A-Side Football League is established to promote highly competitive, safe, and professionally structured local football. By registering a team, all squad managers, players, and associates completely agree to follow and enforce the competition guidelines and codes of conduct detailed below.
+                        </p>
+
+                        <div class="mt-6 border-t border-gray-800 pt-4 space-y-3">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest">DIVISIONS & TEAMS</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="bg-navyDark border border-gray-800 p-3 rounded-lg flex items-center gap-3">
+                                    <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
+                                    <div>
+                                        <p class="font-bold text-white text-sm">Windsor Premier League</p>
+                                        <p class="text-xs text-gray-400">10 Elite Division Teams</p>
+                                    </div>
+                                </div>
+                                <div class="bg-navyDark border border-gray-800 p-3 rounded-lg flex items-center gap-3">
+                                    <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
+                                    <div>
+                                        <p class="font-bold text-white text-sm">Windsor Championship</p>
+                                        <p class="text-xs text-gray-400">10 Secondary Tier Teams</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="space-y-6">
+                    <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 space-y-6 shadow-xl shadow-neonGreen/5">
+                        <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen text-center border-b border-neonGreen/20 pb-3">
+                            FINANCIAL COMMITMENTS
+                        </h3>
                         
-                        <div class="pt-2 border-t border-gray-800">
-                            <a href="#" id="uploadTrigger" onclick="triggerFileSelect(event)" class="text-xs text-neonGreen underline font-bold hover:text-neonGreenHover cursor-pointer flex items-center gap-1.5">
-                                📎 Tap here to upload your Proof of Payment
-                            </a>
-                            <input type="file" id="popUpload" accept="image/*" onchange="previewReceipt(event)" class="hidden">
-                            
-                            <div id="previewContainer" class="mt-3 hidden">
-                                <p class="text-[10px] text-neonGreen font-bold mb-1">✔ POP Attached Successfully:</p>
-                                <img id="receiptPreview" src="" class="max-w-full max-h-48 border border-gray-700 rounded p-1 bg-black/40">
+                        <div class="text-center space-y-1">
+                            <p class="text-xs text-gray-400 uppercase tracking-widest">Team Registration Fee</p>
+                            <p class="text-3xl font-sports text-white">R1,400</p>
+                            <p class="text-[10px] text-gray-500 italic">EFT or Cash cleared to secure slot</p>
+                        </div>
+
+                        <div class="text-center space-y-1 border-t border-gray-800 pt-4">
+                            <p class="text-xs text-gray-400 uppercase tracking-widest">Match Fee</p>
+                            <p class="text-2xl font-sports text-white">R100</p>
+                            <p class="text-[10px] text-gray-500 italic">Payable to official prior to kickoff</p>
+                        </div>
+
+                        <div class="bg-neonGreen text-black p-4 rounded-lg text-center space-y-1 shadow-md shadow-neonGreen/10">
+                            <p class="text-xs uppercase tracking-widest font-bold opacity-80">League Champions Prize</p>
+                            <p class="text-3xl font-sports font-black">R3,000</p>
+                            <p class="text-[10px] font-bold opacity-70 uppercase tracking-wider">Cash Grand Prize</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 shadow-lg shadow-black/50">
+                <div class="flex items-center gap-3">
+                    <span class="text-neonGreen text-xl font-bold">2.0</span>
+                    <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">TEAM ROSTERS & MATCH SCHEDULING</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Squad Composition</h4>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span><strong>Roster Size:</strong> Register between 5 and 10 players maximum per team.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span><strong>Active Play:</strong> A maximum of 5 active players (including the goalkeeper) on court.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span><strong>Rolling Subs:</strong> Dynamic swaps allowed. Exiting player must fully exit the touchline before substitute enters.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Match Times & Rules</h4>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span><strong>Weekly Fixtures:</strong> Played Monday through Thursday (18:00 - 21:00).</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span><strong>Match Duration:</strong> Two 20-minute halves divided by a 5-minute halftime.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span><strong>Forfeit Rule:</strong> Teams must arrive 15 mins early. If 4 players are not fielded within 10 mins of start time, a forfeit is triggered (3-0 loss).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-navyDark border border-neonGreen/20 rounded-lg p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+                    <div class="border-b sm:border-b-0 sm:border-r border-gray-800 pb-2 sm:pb-0">
+                        <p class="text-xs uppercase text-gray-400 tracking-wider">Registration Deadline</p>
+                        <p class="text-lg font-bold text-neonGreen">25 July 2026</p>
+                    </div>
+                    <div>
+                        <p class="text-xs uppercase text-gray-400 tracking-wider">League Kick-off</p>
+                        <p class="text-lg font-bold text-white">Early August 2026</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 shadow-lg shadow-black/50">
+                <div class="flex items-center gap-3">
+                    <span class="text-neonGreen text-xl font-bold">3.0</span>
+                    <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">GENERAL GAMEPLAY REGULATIONS</h3>
+                </div>
+
+                <div class="bg-red-950/40 border-l-4 border-red-500 p-4 rounded-r-lg space-y-1">
+                    <p class="text-xs uppercase tracking-widest font-black text-red-400 flex items-center gap-2">
+                        🚨 CRITICAL SAFETY DIRECTIVE
+                    </p>
+                    <p class="text-sm text-gray-200">
+                        <strong>No Slide Tackling:</strong> Sliding along the ground to challenge, intercept, or tackle an opponent is <strong>strictly banned</strong>. Any violation results in an immediate <strong>Yellow Card (2-minute suspension)</strong> and an indirect free kick awarded to the opposing side. Hard physical contact, excessive shoulder-charging, and pushing are heavily penalized.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.1 Equipment & Uniform</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            Matches are executed utilizing a regulation **Size 5 football**. All players must wear flat-soled indoor football shoes or standard running takkies. Outdoor cleats or metal-studded boots are **strictly prohibited**.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.2 Corner Shielding Limit</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            Players shielding or handling the ball in the corner circle have exactly **5 seconds** (called aloud by referee) to cleanly pass the ball or exit. Over-shielding results in immediate turnover.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.3 The 5-Second Restart</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            All set-pieces and restarts (kick-ins, free kicks, corners, goalie clearance throws) must be executed within **5 seconds** from whistle. Defending walls must stand at least **5 paces (meters)** back.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 shadow-lg shadow-black/50 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-neonGreen text-lg font-bold">4.0</span>
+                        <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen">GOALKEEPER REGULATIONS</h3>
+                    </div>
+                    <div class="space-y-3 text-xs md:text-sm text-gray-300">
+                        <p>
+                            ⚽ <strong>Tactical Back-Pass:</strong> Strictly **one (1) back-pass** per half is permitted. Additional passes award an indirect free-kick to the opposition from the outer edge of the penalty box.
+                        </p>
+                        <p>
+                            ⚽ <strong>Area of Play:</strong> Hands can only be used inside the penalty box. Goalie must release/distribute the ball within **5 seconds** of gaining control.
+                        </p>
+                        <p>
+                            ⚽ <strong>Clean Saves:</strong> Goalkeepers can slide *only* to block a shot or save inside their penalty area, provided the challenge is clean and doesn't show studs.
+                        </p>
+                        <p>
+                            ⚽ <strong>Scoring:</strong> Goals scored directly by the goalkeeper must be kicked along the ground. Launching or throwing the ball by hand does not count as a valid score.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 shadow-lg shadow-black/50 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-neonGreen text-lg font-bold">5.0</span>
+                        <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen">DISCIPLINARY CODE & KICKS</h3>
+                    </div>
+                    <div class="space-y-3 text-xs md:text-sm text-gray-300">
+                        <p>
+                            ⚽ <strong>No Run-Up Penalty:</strong> All penalty kicks must be executed from a static, stationary stance. The non-striking foot must remain planted flat beside the ball.
+                        </p>
+                        <p>
+                            🟨 <span class="text-yellow-400 font-bold">Yellow Card:</span> Carries an automatic **2-minute temporary suspension (Sin Bin)**. Team plays down a player for the duration.
+                        </p>
+                        <p>
+                            🟥 <span class="text-red-500 font-bold">Red Card:</span> Immediate ejection for the remainder of the match. Triggers an automatic **1-game suspension** covering the next scheduled fixture.
+                        </p>
+                        <p>
+                            🛑 <strong>Conduct & Referee:</strong> Fighting, verbal abuse, coarse language, or official intimidation will cause immediate expulsion. **The referee's decision is final.**
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="html2pdf__page-break"></div>
+
+            <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 md:p-8 space-y-6 shadow-xl shadow-neonGreen/5">
+                <div class="text-center space-y-2 border-b border-gray-800 pb-4">
+                    <span class="bg-neonGreen text-black text-[10px] font-black px-2 py-0.5 rounded tracking-widest uppercase font-mono">REGISTRATION DESK</span>
+                    <h3 class="text-3xl font-sports uppercase tracking-wider text-white">OFFICIAL TEAM REGISTRATION FORM</h3>
+                    <p class="text-xs text-gray-400 italic">Complete details below. Submitting will instantly compile and register your squad.</p>
+                </div>
+
+                <div class="space-y-8" id="formWrapper">
+                    <div class="space-y-4">
+                        <h4 class="text-sm font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">SQUAD DETAILS</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs font-semibold text-gray-300">TEAM NAME</label>
+                                <input type="text" id="teamNameField" required placeholder="Enter Team Name..." class="w-full bg-navyDark border border-gray-800 focus:border-neonGreen outline-none text-white px-3 py-2 rounded text-sm transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-semibold text-gray-300">PREFERRED DIVISION</label>
+                                <select id="divisionField" required class="w-full bg-navyDark border border-gray-800 focus:border-neonGreen outline-none text-white px-3 py-2 rounded text-sm transition-all">
+                                    <option value="" disabled selected>-- Select One --</option>
+                                    <option value="Windsor Premier League">Windsor Premier League</option>
+                                    <option value="Windsor Championship">Windsor Championship League</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-navyDark border border-gray-800 p-4 rounded-lg flex flex-col justify-center space-y-2">
-                        <p class="text-xs font-bold text-white uppercase">Option 2: Cash Payment</p>
-                        <p class="text-xs text-gray-400">
-                            Cash payments can be made directly at the Windsor Sports Centre administration office during operational hours.
+
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">CONTACT REPRESENTATIVES</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
+                                <thead class="bg-navyDark text-white uppercase tracking-wider">
+                                    <tr>
+                                        <th class="border border-gray-800 p-2 font-bold">Role</th>
+                                        <th class="border border-gray-800 p-2">Full Name</th>
+                                        <th class="border border-gray-800 p-2">Cell Phone Number</th>
+                                        <th class="border border-gray-800 p-2">Email Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-gray-800 p-2 font-bold text-neonGreen">Captain</td>
+                                        <td class="border border-gray-800 p-2"><input type="text" id="capName" required class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-2"><input type="tel" id="capPhone" required class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-2"><input type="email" id="capEmail" required class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-800 p-2 font-bold text-neonGreen">Vice-Captain</td>
+                                        <td class="border border-gray-800 p-2"><input type="text" id="vcName" required class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-2"><input type="tel" id="vcPhone" required class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-2"><input type="email" id="vcEmail" required class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center no-print">
+                            <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">OFFICIAL PLAYER ROSTER (MIN 5 / MAX 10)</h4>
+                            <button type="button" onclick="toggleSubstitutes()" class="text-xs text-neonGreen border border-neonGreen/30 px-2.5 py-1 rounded hover:bg-neonGreen/10 transition">
+                                <span id="subBtnText">Show Substitutes (6-10)</span>
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
+                                <thead class="bg-navyDark text-white uppercase tracking-wider">
+                                    <tr>
+                                        <th class="border border-gray-800 p-2 text-center w-12">#</th>
+                                        <th class="border border-gray-800 p-2">Player Full Name</th>
+                                        <th class="border border-gray-800 p-2">South African ID / Passport / Birth Certificate No.</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-800/50">
+                                    <tr>
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">1</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p1Name" required placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p1ID" required placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">2</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p2Name" required placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p2ID" required placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">3</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p3Name" required placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p3ID" required placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">4</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p4Name" required placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p4ID" required placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">5</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p5Name" required placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p5ID" required placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr class="sub-row hidden">
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">6</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p6Name" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p6ID" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr class="sub-row hidden">
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">7</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p7Name" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p7ID" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr class="sub-row hidden">
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">8</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p8Name" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p8ID" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr class="sub-row hidden">
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">9</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p9Name" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p9ID" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr class="sub-row hidden">
+                                        <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">10</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p10Name" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="p10ID" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">PAYMENT DETAILS & INSTRUCTIONS</h4>
+                        <p class="text-xs text-gray-300">
+                            The registration fee of <strong class="text-white">R1,400</strong> must be paid in full to secure your league spot.
                         </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-navyDark border border-neonGreen/20 p-4 rounded-lg space-y-3">
+                                <p class="text-xs font-bold text-neonGreen uppercase">Option 1: Electronic Funds Transfer (EFT)</p>
+                                <p class="text-[11px] text-gray-400 italic leading-snug">
+                                    💡 Pay directly into our FNB account below:
+                                </p>
+                                <div class="text-xs space-y-1 text-gray-300">
+                                    <p><strong>Account Holder:</strong> Windsor Sports Center (Pty) Ltd</p>
+                                    <p><strong>Bank:</strong> First National Bank (FNB)</p>
+                                    <p><strong>Account Number:</strong> 63132137919</p>
+                                    <p><strong>Branch Code:</strong> 210554</p>
+                                    <p><strong>Reference:</strong> <span class="bg-pitchBlack px-1.5 py-0.5 rounded text-neonGreen font-mono">[Your Team Name] - 5aside</span></p>
+                                </div>
+                                
+                                <div class="pt-2 border-t border-gray-800">
+                                    <a href="#" id="uploadTrigger" onclick="triggerFileSelect(event)" class="text-xs text-neonGreen underline font-bold hover:text-neonGreenHover cursor-pointer flex items-center gap-1.5">
+                                        📎 Tap here to upload your Proof of Payment
+                                    </a>
+                                    <input type="file" id="popUpload" accept="image/*" onchange="previewReceipt(event)" class="hidden">
+                                    
+                                    <div id="previewContainer" class="mt-3 hidden">
+                                        <p class="text-[10px] text-neonGreen font-bold mb-1">✔ POP Attached Successfully:</p>
+                                        <img id="receiptPreview" src="" class="max-w-full max-h-48 border border-gray-700 rounded p-1 bg-black/40">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-navyDark border border-gray-800 p-4 rounded-lg flex flex-col justify-center space-y-2">
+                                <p class="text-xs font-bold text-white uppercase">Option 2: Cash Payment</p>
+                                <p class="text-xs text-gray-400">
+                                    Cash payments can be made directly at the Windsor Sports Centre administration office during operational hours.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="space-y-4 pt-4 border-t border-gray-800">
-                <p class="text-[11px] text-gray-400 leading-relaxed italic">
-                    By signing below, we certify that our entire squad has read, understood, and agreed to abide by the official rules and disciplinary codes of the Windsor Sports Centre 5-A-Side Football League.
-                </p>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-                    <div class="flex flex-col space-y-2">
-                        <div class="flex justify-between text-xs text-gray-400 font-semibold">
-                            <span>CAPTAIN SIGNATURE</span>
-                            <button type="button" onclick="clearCanvas('captainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
-                        </div>
-                        <div class="bg-navyDark border border-gray-800 rounded p-1">
-                            <canvas id="captainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
+                    <div class="space-y-4 pt-4 border-t border-gray-800">
+                        <p class="text-[11px] text-gray-400 leading-relaxed italic">
+                            By signing below, we certify that our entire squad has read, understood, and agreed to abide by the official rules and disciplinary codes of the Windsor Sports Centre 5-A-Side Football League.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                            <div class="flex flex-col space-y-2">
+                                <div class="flex justify-between text-xs text-gray-400 font-semibold">
+                                    <span>CAPTAIN SIGNATURE</span>
+                                    <button type="button" onclick="clearCanvas('captainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
+                                </div>
+                                <div class="bg-navyDark border border-gray-800 rounded p-1">
+                                    <canvas id="captainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col space-y-2">
+                                <div class="flex justify-between text-xs text-gray-400 font-semibold">
+                                    <span>VICE-CAPTAIN SIGNATURE</span>
+                                    <button type="button" onclick="clearCanvas('viceCaptainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
+                                </div>
+                                <div class="bg-navyDark border border-gray-800 rounded p-1">
+                                    <canvas id="viceCaptainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="flex flex-col space-y-2">
-                        <div class="flex justify-between text-xs text-gray-400 font-semibold">
-                            <span>VICE-CAPTAIN SIGNATURE</span>
-                            <button type="button" onclick="clearCanvas('viceCaptainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
-                        </div>
-                        <div class="bg-navyDark border border-gray-800 rounded p-1">
-                            <canvas id="viceCaptainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="no-print bg-navyDark/80 border border-neonGreen/20 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-                <div>
-                    <p class="text-xs font-bold text-white uppercase tracking-wider">Ready to submit?</p>
-                    <p class="text-[11px] text-gray-400">Save as PDF, attach your EFT proof of payment, and email to the admin desk.</p>
+                    <div class="no-print pt-6">
+                        <button type="button" onclick="handleSubmit()" id="submitBtn" class="w-full bg-neonGreen hover:bg-neonGreenHover text-pitchBlack h-14 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-lg shadow-neonGreen/20 flex items-center justify-center gap-2">
+                            <span>🚀 Submit Registration & Download Official PDF</span>
+                        </button>
+                    </div>
+
                 </div>
-                <button onclick="window.print()" class="bg-transparent hover:bg-neonGreen/10 text-neonGreen border border-neonGreen font-semibold px-4 py-1.5 rounded text-xs tracking-wider uppercase transition-all duration-200">
-                    Save Registration Form
-                </button>
-            </div>
+            </section>
 
             <div class="pt-6 border-t border-gray-800/50 text-center space-y-2">
                 <p class="text-xs text-gray-300"><strong>TO SIGN UP OR FOR QUERIES, CONTACT:</strong></p>
                 <p class="text-sm font-bold text-neonGreen">Muhammed Moola: 063 225 1773</p>
-                <p class="text-xs text-gray-400">Address: Windsor Sports Centre, 39 Louis Trichardt Str, Mahmoud</p>
+                <p class="text-xs text-gray-400">Address: Windsor Sports Centre, 39 Louis Trichardt Str, Volksrust</p>
             </div>
-        </section>
+        </main>
+    </div>
 
-    </main>
+    <form id="hiddenFormspree" action="https://formspree.io/f/xvzegnep" method="POST" enctype="multipart/form-data" class="hidden">
+        <input type="text" name="Team Name" id="hsTeamName">
+        <input type="text" name="Preferred Division" id="hsDivision">
+        <input type="text" name="Captain Name" id="hsCapName">
+        <input type="text" name="Captain Phone" id="hsCapPhone">
+        <input type="file" name="Official_Registration_Pack_PDF" id="hsPdfFile">
+    </form>
 
     <footer class="bg-pitchBlack border-t border-gray-900 py-8 text-center text-xs text-gray-500 space-y-2">
         <p>© 2026 Windsor Sports Centre. All rights reserved.</p>
@@ -535,7 +517,6 @@
             const ctx = canvas.getContext('2d');
             let drawing = false;
 
-            // Normalize coordinates for fluid drawing (matching retina and mobile scalings)
             function getCoordinates(event) {
                 const rect = canvas.getBoundingClientRect();
                 if (event.touches && event.touches.length > 0) {
@@ -551,7 +532,6 @@
                 }
             }
 
-            // Mouse Action Handlers
             canvas.addEventListener('mousedown', (e) => { 
                 drawing = true; 
                 ctx.beginPath();
@@ -565,12 +545,11 @@
                 const coords = getCoordinates(e);
                 ctx.lineWidth = 2.5;
                 ctx.lineCap = 'round';
-                ctx.strokeStyle = '#39FF14'; // Bright Neon line matching theme style
+                ctx.strokeStyle = '#39FF14'; 
                 ctx.lineTo(coords.x, coords.y);
                 ctx.stroke();
             });
 
-            // Mobile Finger/Stylus Touch Action Handlers
             canvas.addEventListener('touchstart', (e) => {
                 drawing = true;
                 ctx.beginPath();
@@ -584,24 +563,23 @@
                 const coords = getCoordinates(e);
                 ctx.lineWidth = 2.5;
                 ctx.lineCap = 'round';
-                ctx.strokeStyle = '#39FF14'; // Matching Neon green drawing ink
+                ctx.strokeStyle = '#39FF14'; 
                 ctx.lineTo(coords.x, coords.y);
                 ctx.stroke();
                 e.preventDefault();
             }, { passive: false });
         }
 
-        // Clean Canvas Function
         function clearCanvas(id) {
             const canvas = document.getElementById(id);
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
-        // --- INTERACTIVE PROOF OF PAYMENT STORAGE WORKAROUND ---
+        // --- FILE SELECTION & PREVIEW ---
         function triggerFileSelect(event) {
-            event.preventDefault(); // Stay on page
-            document.getElementById('popUpload').click(); // Fire native device window
+            event.preventDefault();
+            document.getElementById('popUpload').click();
         }
 
         function previewReceipt(event) {
@@ -612,9 +590,112 @@
                     const output = document.getElementById('receiptPreview');
                     const container = document.getElementById('previewContainer');
                     output.src = reader.result;
-                    container.classList.remove('hidden'); // Show structural preview container
+                    container.classList.remove('hidden');
                 };
                 reader.readAsDataURL(file);
+            }
+        }
+
+        // --- TOGGLE SUBS ---
+        function toggleSubstitutes() {
+            const subRows = document.querySelectorAll('.sub-row');
+            const subBtnText = document.getElementById('subBtnText');
+            let isHidden = true;
+
+            subRows.forEach(row => {
+                if (row.classList.contains('hidden')) {
+                    row.classList.remove('hidden');
+                    isHidden = false;
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+
+            subBtnText.innerText = isHidden ? "Show Substitutes (6-10)" : "Hide Substitutes (6-10)";
+        }
+
+        // --- AUTOMATED FLOW: GENERATE PDF & DISPATCH TO FORMSPREE ---
+        async function handleSubmit() {
+            const btn = document.getElementById('submitBtn');
+            const teamName = document.getElementById('teamNameField').value.trim();
+            const preferredDivision = document.getElementById('divisionField').value;
+            const capName = document.getElementById('capName').value.trim();
+            const capPhone = document.getElementById('capPhone').value.trim();
+
+            // Simple client-side validation check
+            if (!teamName || !preferredDivision || !capName || !capPhone) {
+                alert("Please fill out all squad details and contact representative fields first!");
+                return;
+            }
+
+            // Change button state to loading
+            btn.disabled = true;
+            btn.innerHTML = `<span>⏳ Processing Registration... Don't close this page</span>`;
+            btn.style.opacity = '0.7';
+
+            // Ensure subs are visible in the PDF compile
+            const subRows = document.querySelectorAll('.sub-row');
+            subRows.forEach(row => row.classList.remove('hidden'));
+
+            // Set up configurations for html2pdf
+            const element = document.getElementById('pdfContent');
+            const opt = {
+                margin:       [10, 10, 10, 10], // Margins
+                filename:     `${teamName.replace(/\s+/g, '_')}_Windsor_5ASide_Registration.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#070B19' },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            try {
+                // Generate the raw PDF binary array
+                const pdfWorker = html2pdf().set(opt).from(element);
+                
+                // Triggers direct client-side download to their browser
+                await pdfWorker.save();
+
+                // Generate a raw blob file to attach to Formspree upload
+                const pdfBlob = await pdfWorker.output('blob');
+
+                // Bind details to hidden background Formspree structure
+                document.getElementById('hsTeamName').value = teamName;
+                document.getElementById('hsDivision').value = preferredDivision;
+                document.getElementById('hsCapName').value = capName;
+                document.getElementById('hsCapPhone').value = capPhone;
+
+                // Pack pdf file binary inside file input
+                const fileContainer = new DataTransfer();
+                const file = new File([pdfBlob], `${teamName.replace(/\s+/g, '_')}_Registration_Pack.pdf`, { type: "application/pdf" });
+                fileContainer.items.add(file);
+                document.getElementById('hsPdfFile').files = fileContainer.files;
+
+                // Send to Formspree silently
+                const hiddenForm = document.getElementById('hiddenFormspree');
+                const formData = new FormData(hiddenForm);
+
+                const response = await fetch(hiddenForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    btn.innerHTML = `<span>✔ Fully Registered & Saved!</span>`;
+                    btn.classList.remove('bg-neonGreen', 'hover:bg-neonGreenHover');
+                    btn.classList.add('bg-green-600', 'text-white');
+                    alert(`Awesome! ${teamName} has been fully registered! The official PDF is downloading now. See you on court!`);
+                } else {
+                    throw new Error("Formspree server returned an error.");
+                }
+
+            } catch (err) {
+                console.error(err);
+                btn.disabled = false;
+                btn.innerHTML = `<span>❌ Error. Tap to try again</span>`;
+                btn.style.opacity = '1';
+                alert("Something went wrong compiling your registration. Please try submitting again!");
             }
         }
 
@@ -624,4 +705,3 @@
     </script>
 </body>
 </html>
-                 
