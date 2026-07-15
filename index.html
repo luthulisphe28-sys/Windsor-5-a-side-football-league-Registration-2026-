@@ -1,11 +1,9 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windsor Sports Centre - 5-A-Side Official Pack</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -75,12 +73,15 @@
             .page-break {
                 page-break-before: always;
             }
+            canvas {
+                border: 1px solid #000 !important;
+                background: white !important;
+            }
         }
     </style>
 </head>
 <body class="bg-navyDark text-gray-100 font-sans selection:bg-neonGreen selection:text-black">
 
-    <!-- Top Action Banner (Hidden in Print) -->
     <div class="no-print bg-pitchBlack border-b border-neonGreen/30 sticky top-0 z-50 px-4 py-3 shadow-lg">
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
             <div class="flex items-center gap-2">
@@ -97,10 +98,8 @@
         </div>
     </div>
 
-    <!-- Main Wrapper -->
     <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-12">
 
-        <!-- HEADER HERO HERO BANNER -->
         <div class="text-center space-y-4 py-6 border-b border-neonGreen/20">
             <p class="text-neonGreen tracking-[0.3em] uppercase font-black text-sm md:text-base">OFFICIAL LEAGUE RELEASE</p>
             <h1 class="text-5xl md:text-7xl font-sports tracking-tight text-white uppercase italic leading-none drop-shadow-[0_4px_12px_rgba(57,255,20,0.15)]">
@@ -116,11 +115,8 @@
             </div>
         </div>
 
-        <!-- SECTION 1: OVERVIEW & FINANCIALS -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Left 2 Columns -->
             <div class="md:col-span-2 space-y-6">
-                <!-- 1. LEAGUE OVERVIEW -->
                 <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-4 print-card shadow-lg shadow-black/50">
                     <div class="flex items-center gap-3">
                         <span class="text-neonGreen text-xl font-bold">1.0</span>
@@ -152,7 +148,6 @@
                 </section>
             </div>
 
-            <!-- Right Column: Financial Highlights -->
             <div class="space-y-6">
                 <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 space-y-6 print-card shadow-xl shadow-neonGreen/5">
                     <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen text-center border-b border-neonGreen/20 pb-3">
@@ -180,7 +175,6 @@
             </div>
         </div>
 
-        <!-- SECTION 2: ROSTERS, TIMES & SCHEDULING -->
         <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 print-card shadow-lg shadow-black/50">
             <div class="flex items-center gap-3">
                 <span class="text-neonGreen text-xl font-bold">2.0</span>
@@ -188,7 +182,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Roster Info -->
                 <div class="space-y-4">
                     <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Squad Composition</h4>
                     <ul class="space-y-3 text-sm text-gray-300">
@@ -207,7 +200,6 @@
                     </ul>
                 </div>
 
-                <!-- Match times -->
                 <div class="space-y-4">
                     <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Match Times & Rules</h4>
                     <ul class="space-y-3 text-sm text-gray-300">
@@ -227,7 +219,6 @@
                 </div>
             </div>
 
-            <!-- Deadlines highlight -->
             <div class="bg-navyDark border border-neonGreen/20 rounded-lg p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
                 <div class="border-b sm:border-b-0 sm:border-r border-gray-800 pb-2 sm:pb-0">
                     <p class="text-xs uppercase text-gray-400 tracking-wider">Registration Deadline</p>
@@ -240,14 +231,12 @@
             </div>
         </section>
 
-        <!-- SECTION 3: GENERAL GAMEPLAY REGULATIONS -->
         <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 print-card shadow-lg shadow-black/50">
             <div class="flex items-center gap-3">
                 <span class="text-neonGreen text-xl font-bold">3.0</span>
                 <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">GENERAL GAMEPLAY REGULATIONS</h3>
             </div>
 
-            <!-- Critical Safety Block -->
             <div class="bg-red-950/40 border-l-4 border-red-500 p-4 rounded-r-lg space-y-1">
                 <p class="text-xs uppercase tracking-widest font-black text-red-400 flex items-center gap-2">
                     🚨 CRITICAL SAFETY DIRECTIVE
@@ -258,7 +247,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Equipment -->
                 <div class="space-y-2">
                     <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.1 Equipment & Uniform</h4>
                     <p class="text-xs text-gray-300 leading-relaxed">
@@ -266,7 +254,6 @@
                     </p>
                 </div>
 
-                <!-- Corner Rule -->
                 <div class="space-y-2">
                     <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.2 Corner Shielding Limit</h4>
                     <p class="text-xs text-gray-300 leading-relaxed">
@@ -274,7 +261,6 @@
                     </p>
                 </div>
 
-                <!-- Restart Rule -->
                 <div class="space-y-2">
                     <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.3 The 5-Second Restart</h4>
                     <p class="text-xs text-gray-300 leading-relaxed">
@@ -284,9 +270,7 @@
             </div>
         </section>
 
-        <!-- SECTION 4 & 5: GOALKEEPER & DISCIPLINARY -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Goalkeeper regulations -->
             <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 print-card shadow-lg shadow-black/50 space-y-4">
                 <div class="flex items-center gap-3">
                     <span class="text-neonGreen text-lg font-bold">4.0</span>
@@ -308,7 +292,6 @@
                 </div>
             </section>
 
-            <!-- Disciplinary code -->
             <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 print-card shadow-lg shadow-black/50 space-y-4">
                 <div class="flex items-center gap-3">
                     <span class="text-neonGreen text-lg font-bold">5.0</span>
@@ -331,7 +314,6 @@
             </section>
         </div>
 
-        <!-- PAGE 4: REGISTRATION FORM (PAGE BREAK IN PRINT) -->
         <section class="page-break bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 md:p-8 space-y-6 print-card shadow-xl shadow-neonGreen/5">
             <div class="text-center space-y-2 border-b border-gray-800 pb-4">
                 <span class="bg-neonGreen text-black text-[10px] font-black px-2 py-0.5 rounded tracking-widest uppercase">PAGE 4</span>
@@ -339,7 +321,6 @@
                 <p class="text-xs text-gray-400 italic">Please complete in block letters and submit to the office with proof of payment.</p>
             </div>
 
-            <!-- Squad Details Forms -->
             <div class="space-y-4">
                 <h4 class="text-sm font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">SQUAD DETAILS</h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -358,7 +339,6 @@
                 </div>
             </div>
 
-            <!-- Contact Roles Table -->
             <div class="space-y-2">
                 <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">CONTACT REPRESENTATIVES</h4>
                 <div class="overflow-x-auto">
@@ -389,7 +369,6 @@
                 </div>
             </div>
 
-            <!-- Official Roster Table -->
             <div class="space-y-2">
                 <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">OFFICIAL PLAYER ROSTER (MIN 5 / MAX 10)</h4>
                 <div class="overflow-x-auto">
@@ -398,76 +377,76 @@
                             <tr>
                                 <th class="border border-gray-800 p-2 text-center w-12">#</th>
                                 <th class="border border-gray-800 p-2">Player Full Name</th>
-                                <th class="border border-gray-800 p-2">South African ID Number / Passport</th>
+                                <th class="border border-gray-800 p-2">South African ID / Passport / Birth Certificate No.</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-800/50">
-                            <!-- Rows 1 to 10 -->
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">1</td>
                                 <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID/Passport..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">2</td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">3</td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">4</td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">5</td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="First Name & Surname..." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">6</td>
                                 <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">7</td>
                                 <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">8</td>
                                 <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">9</td>
                                 <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                             <tr>
                                 <td class="border border-gray-800 p-1 text-center font-bold text-gray-500">10</td>
                                 <td class="border border-gray-800 p-1"><input type="text" placeholder="(Optional Sub)" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
-                                <td class="border border-gray-800 p-1"><input type="text" class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                <td class="border border-gray-800 p-1"><input type="text" placeholder="ID / Passport / Birth Certificate No." class="w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Bank / Payment instructions -->
             <div class="space-y-4">
                 <h4 class="text-sm font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">PAYMENT DETAILS & INSTRUCTIONS</h4>
                 <p class="text-xs text-gray-300">
                     The registration fee of <strong class="text-white">R1,400</strong> must be paid in full to secure your league spot.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Option 1: EFT -->
-                    <div class="bg-navyDark border border-neonGreen/20 p-4 rounded-lg space-y-2">
+                    <div class="bg-navyDark border border-neonGreen/20 p-4 rounded-lg space-y-3">
                         <p class="text-xs font-bold text-neonGreen uppercase">Option 1: Electronic Funds Transfer (EFT)</p>
+                        <p class="text-[11px] text-gray-400 italic leading-snug">
+                            💡 You can pay from <strong>ANY</strong> bank app (Capitec, Standard Bank, ABSA, Nedbank, TymeBank, etc.) directly into our FNB account below:
+                        </p>
                         <div class="text-xs space-y-1 text-gray-300">
                             <p><strong>Account Holder:</strong> Windsor Sports Center (Pty) Ltd</p>
                             <p><strong>Bank:</strong> First National Bank (FNB)</p>
@@ -475,8 +454,19 @@
                             <p><strong>Branch Code:</strong> 210554</p>
                             <p><strong>Reference:</strong> <span class="bg-black px-1.5 py-0.5 rounded text-neonGreen font-mono select-all">[Your Team Name] - 5aside</span></p>
                         </div>
+                        
+                        <div class="pt-2 border-t border-gray-800">
+                            <a href="#" id="uploadTrigger" onclick="triggerFileSelect(event)" class="text-xs text-neonGreen underline font-bold hover:text-neonGreenHover cursor-pointer flex items-center gap-1.5">
+                                📎 Tap here to upload your Proof of Payment
+                            </a>
+                            <input type="file" id="popUpload" accept="image/*" onchange="previewReceipt(event)" class="hidden">
+                            
+                            <div id="previewContainer" class="mt-3 hidden">
+                                <p class="text-[10px] text-neonGreen font-bold mb-1">✔ POP Attached Successfully:</p>
+                                <img id="receiptPreview" src="" class="max-w-full max-h-48 border border-gray-700 rounded p-1 bg-black/40">
+                            </div>
+                        </div>
                     </div>
-                    <!-- Option 2: Cash -->
                     <div class="bg-navyDark border border-gray-800 p-4 rounded-lg flex flex-col justify-center space-y-2">
                         <p class="text-xs font-bold text-white uppercase">Option 2: Cash Payment</p>
                         <p class="text-xs text-gray-400">
@@ -486,30 +476,44 @@
                 </div>
             </div>
 
-            <!-- Signature block -->
             <div class="space-y-4 pt-4 border-t border-gray-800">
                 <p class="text-[11px] text-gray-400 leading-relaxed italic">
                     By signing below, we certify that our entire squad has read, understood, and agreed to abide by the official rules and disciplinary codes of the Windsor Sports Centre 5-A-Side Football League.
                 </p>
+                
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-                    <div class="border-b border-gray-800 pb-1">
-                        <div class="flex justify-between text-xs text-gray-400 font-semibold mb-1">
+                    <div class="flex flex-col space-y-2">
+                        <div class="flex justify-between text-xs text-gray-400 font-semibold">
                             <span>CAPTAIN SIGNATURE</span>
-                            <span>DATE</span>
+                            <button type="button" onclick="clearCanvas('captainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
                         </div>
-                        <div class="h-8"></div>
+                        <div class="bg-navyDark border border-gray-800 rounded p-1">
+                            <canvas id="captainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
+                        </div>
                     </div>
-                    <div class="border-b border-gray-800 pb-1">
-                        <div class="flex justify-between text-xs text-gray-400 font-semibold mb-1">
+                    
+                    <div class="flex flex-col space-y-2">
+                        <div class="flex justify-between text-xs text-gray-400 font-semibold">
                             <span>VICE-CAPTAIN SIGNATURE</span>
-                            <span>DATE</span>
+                            <button type="button" onclick="clearCanvas('viceCaptainCanvas')" class="text-[10px] text-red-400 hover:underline">Clear</button>
                         </div>
-                        <div class="h-8"></div>
+                        <div class="bg-navyDark border border-gray-800 rounded p-1">
+                            <canvas id="viceCaptainCanvas" width="350" height="110" class="w-full h-24 bg-navyDark border border-gray-700 rounded cursor-crosshair"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Contact Footnote -->
+            <div class="no-print bg-navyDark/80 border border-neonGreen/20 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                <div>
+                    <p class="text-xs font-bold text-white uppercase tracking-wider">Ready to submit?</p>
+                    <p class="text-[11px] text-gray-400">Save as PDF, attach your EFT proof of payment, and email to the admin desk.</p>
+                </div>
+                <button onclick="window.print()" class="bg-transparent hover:bg-neonGreen/10 text-neonGreen border border-neonGreen font-semibold px-4 py-1.5 rounded text-xs tracking-wider uppercase transition-all duration-200">
+                    Save Registration Form
+                </button>
+            </div>
+
             <div class="pt-6 border-t border-gray-800/50 text-center space-y-2">
                 <p class="text-xs text-gray-300"><strong>TO SIGN UP OR FOR QUERIES, CONTACT:</strong></p>
                 <p class="text-sm font-bold text-neonGreen">Muhammed Moola: 063 225 1773</p>
@@ -519,5 +523,105 @@
 
     </main>
 
+    <footer class="bg-pitchBlack border-t border-gray-900 py-8 text-center text-xs text-gray-500 space-y-2">
+        <p>© 2026 Windsor Sports Centre. All rights reserved.</p>
+        <p class="tracking-widest uppercase text-[10px] text-gray-600">Volksrust, South Africa</p>
+    </footer>
+
+    <script>
+        // --- MULTI-DEVICE CANVAS DRAWING LOGIC ---
+        function setupCanvas(id) {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            let drawing = false;
+
+            // Normalize coordinates for fluid drawing (matching retina and mobile scalings)
+            function getCoordinates(event) {
+                const rect = canvas.getBoundingClientRect();
+                if (event.touches && event.touches.length > 0) {
+                    return {
+                        x: event.touches[0].clientX - rect.left,
+                        y: event.touches[0].clientY - rect.top
+                    };
+                } else {
+                    return {
+                        x: event.clientX - rect.left,
+                        y: event.clientY - rect.top
+                    };
+                }
+            }
+
+            // Mouse Action Handlers
+            canvas.addEventListener('mousedown', (e) => { 
+                drawing = true; 
+                ctx.beginPath();
+                const coords = getCoordinates(e);
+                ctx.moveTo(coords.x, coords.y);
+            });
+            canvas.addEventListener('mouseup', () => { drawing = false; ctx.beginPath(); });
+            canvas.addEventListener('mouseleave', () => { drawing = false; ctx.beginPath(); });
+            canvas.addEventListener('mousemove', (e) => {
+                if (!drawing) return;
+                const coords = getCoordinates(e);
+                ctx.lineWidth = 2.5;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = '#39FF14'; // Bright Neon line matching theme style
+                ctx.lineTo(coords.x, coords.y);
+                ctx.stroke();
+            });
+
+            // Mobile Finger/Stylus Touch Action Handlers
+            canvas.addEventListener('touchstart', (e) => {
+                drawing = true;
+                ctx.beginPath();
+                const coords = getCoordinates(e);
+                ctx.moveTo(coords.x, coords.y);
+                e.preventDefault();
+            });
+            canvas.addEventListener('touchend', () => { drawing = false; ctx.beginPath(); });
+            canvas.addEventListener('touchmove', (e) => {
+                if (!drawing) return;
+                const coords = getCoordinates(e);
+                ctx.lineWidth = 2.5;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = '#39FF14'; // Matching Neon green drawing ink
+                ctx.lineTo(coords.x, coords.y);
+                ctx.stroke();
+                e.preventDefault();
+            }, { passive: false });
+        }
+
+        // Clean Canvas Function
+        function clearCanvas(id) {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // --- INTERACTIVE PROOF OF PAYMENT STORAGE WORKAROUND ---
+        function triggerFileSelect(event) {
+            event.preventDefault(); // Stay on page
+            document.getElementById('popUpload').click(); // Fire native device window
+        }
+
+        function previewReceipt(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const output = document.getElementById('receiptPreview');
+                    const container = document.getElementById('previewContainer');
+                    output.src = reader.result;
+                    container.classList.remove('hidden'); // Show structural preview container
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Initialize Canvases
+        setupCanvas('captainCanvas');
+        setupCanvas('viceCaptainCanvas');
+    </script>
 </body>
 </html>
+                 
