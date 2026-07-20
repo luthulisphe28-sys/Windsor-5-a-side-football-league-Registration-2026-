@@ -336,7 +336,7 @@
                         <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">CONTACT REPRESENTATIVES</h4>
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
-                                <head class="bg-navyDark text-white uppercase tracking-wider">
+                                <thead class="bg-navyDark text-white uppercase tracking-wider">
                                     <tr>
                                         <th class="border border-gray-800 p-2 font-bold">Role</th>
                                         <th class="border border-gray-800 p-2">Full Name</th>
@@ -371,7 +371,7 @@
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
-                                <head class="bg-navyDark text-white uppercase tracking-wider">
+                                <thead class="bg-navyDark text-white uppercase tracking-wider">
                                     <tr>
                                         <th class="border border-gray-800 p-2 text-center w-12">#</th>
                                         <th class="border border-gray-800 p-2">Player Full Name</th>
@@ -656,7 +656,7 @@
         }
 
         // --- AUTOMATED FLOW: GENERATE PDF & DISPATCH TO FORMSPREE ---
-        async function handleSubmit() {
+        function handleSubmit() {
             const btn = document.getElementById('submitBtn');
             const teamName = document.getElementById('teamNameField').value.trim();
             const preferredDivision = document.getElementById('divisionField').value;
@@ -702,10 +702,11 @@
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            try {
-                const pdfWorker = html2pdf().set(opt).from(element);
-                await pdfWorker.save();
-                const pdfBlob = await pdfWorker.output('blob');
+            // Corrected html2pdf pipeline logic layout
+            html2pdf().set(opt).from(element).toPdf().output('blob').then(async function(pdfBlob) {
+                
+                // Triggers local browser save/download execution
+                html2pdf().set(opt).from(element).save();
 
                 // RESTORE GRAPHICS POST-COMPILE FOR INTERACTIVE PAGE VIEW
                 capImg.classList.add('hidden');
@@ -726,24 +727,32 @@
                 const hiddenForm = document.getElementById('hiddenFormspree');
                 const formData = new FormData(hiddenForm);
 
-                const response = await fetch(hiddenForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+                try {
+                    const response = await fetch(hiddenForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
 
-                if (response.ok) {
-                    btn.innerHTML = `<span>✔ Fully Registered & Saved!</span>`;
-                    btn.classList.remove('bg-neonGreen', 'hover:bg-neonGreenHover');
-                    btn.classList.add('bg-green-600', 'text-white');
-                    alert(`Awesome! ${teamName} has been fully registered! The official PDF is downloading now. See you on court!`);
-                } else {
-                    throw new Error("Formspree server returned an error.");
+                    if (response.ok) {
+                        btn.innerHTML = `<span>✔ Fully Registered & Saved!</span>`;
+                        btn.classList.remove('bg-neonGreen', 'hover:bg-neonGreenHover');
+                        btn.classList.add('bg-green-600', 'text-white');
+                        alert(`Awesome! ${teamName} has been fully registered! The official PDF is downloading now. See you on court!`);
+                    } else {
+                        throw new Error("Formspree server returned an error.");
+                    }
+                } catch (submitErr) {
+                    console.error(submitErr);
+                    btn.disabled = false;
+                    btn.innerHTML = `<span>❌ Error sending data. Try again</span>`;
+                    btn.style.opacity = '1';
+                    alert("The PDF generated, but we couldn't send the data to the server. Please check your internet connection and try again.");
                 }
 
-            } catch (err) {
+            }).catch(function(err) {
                 console.error(err);
                 
                 // RESTORE GRAPHICS ON FAIL
@@ -756,7 +765,7 @@
                 btn.innerHTML = `<span>❌ Error. Tap to try again</span>`;
                 btn.style.opacity = '1';
                 alert("Something went wrong compiling your registration. Please try submitting again!");
-            }
+            });
         }
 
         // Initialize Canvases
@@ -765,3 +774,4 @@
     </script>
 </body>
 </html>
+
