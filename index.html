@@ -52,10 +52,13 @@
             background: #2eff00;
         }
         
-        /* PDF specific overrides to ensure beautiful rendering */
-        .pdf-page {
+        /* Strict PDF engine styling to stop blank/black background glitches */
+        #pdfContent {
             background-color: #070B19 !important;
-            color: #f3f4f6 !important;
+            color: #ffffff !important;
+        }
+        .html2pdf__page-break {
+            page-break-before: always;
         }
     </style>
 </head>
@@ -535,7 +538,6 @@
     </footer>
 
     <script>
-        // --- MULTI-DEVICE CANVAS DRAWING LOGIC ---
         const canvasStates = {
             captainCanvas: false,
             viceCaptainCanvas: false
@@ -607,7 +609,6 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             canvasStates[id] = false;
             
-            // Sync image element clear
             const imgId = id === 'captainCanvas' ? 'captainSignatureImage' : 'viceCaptainSignatureImage';
             const imgEl = document.getElementById(imgId);
             imgEl.src = '';
@@ -615,7 +616,6 @@
             canvas.classList.remove('hidden');
         }
 
-        // --- FILE SELECTION & PREVIEW ---
         function triggerFileSelect() {
             const uploadField = document.getElementById('popUpload');
             if (uploadField) {
@@ -623,6 +623,7 @@
             }
         }
 
+        fn = previewReceipt;
         function previewReceipt(event) {
             const file = event.target.files[0];
             if (file) {
@@ -637,7 +638,6 @@
             }
         }
 
-        // --- TOGGLE SUBS ---
         function toggleSubstitutes() {
             const subRows = document.querySelectorAll('.sub-row');
             const subBtnText = document.getElementById('subBtnText');
@@ -655,7 +655,7 @@
             subBtnText.innerText = isHidden ? "Show Substitutes (6-10)" : "Hide Substitutes (6-10)";
         }
 
-        // --- AUTOMATED FLOW: GENERATE PDF & DISPATCH TO FORMSPREE ---
+        // --- STABLE AND NON-CRASHING GENERATION PIPELINE ---
         function handleSubmit() {
             const btn = document.getElementById('submitBtn');
             const teamName = document.getElementById('teamNameField').value.trim();
@@ -672,11 +672,11 @@
             btn.innerHTML = `<span>⏳ Processing Registration... Don't close this page</span>`;
             btn.style.opacity = '0.7';
 
-            // Ensure subs are visible in the PDF compile
+            // Ensure subs are expanded visibly for the PDF layout compile
             const subRows = document.querySelectorAll('.sub-row');
             subRows.forEach(row => row.classList.remove('hidden'));
 
-            // CONVERT REAL-TIME SIGNATURE CANVASES TO STATIC IMAGES SO THEY CAN BE RENDERED IN HTML2PDF
+            // CONVERT DYNAMIC CANVASES TO STATIC ELEMENT IMAGES
             const capCanvas = document.getElementById('captainCanvas');
             const capImg = document.getElementById('captainSignatureImage');
             if (canvasStates['captainCanvas']) {
@@ -693,85 +693,88 @@
                 vcCanvas.classList.add('hidden');
             }
 
-            const element = document.getElementById('pdfContent');
-            const opt = {
-                margin:       [10, 10, 10, 10], 
-                filename:     `${teamName.replace(/\s+/g, '_')}_Windsor_5ASide_Registration.pdf`,
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#070B19' },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+            // A short pause gives signature image assets time to render cleanly before capturing layout
+            setTimeout(() => {
+                const element = document.getElementById('pdfContent');
+                const opt = {
+                    margin:       [10, 10, 10, 10], 
+                    filename:     `${teamName.replace(/\s+/g, '_')}_Windsor_5ASide_Registration.pdf`,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#070B19' },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
 
-            // Corrected html2pdf pipeline logic layout
-            html2pdf().set(opt).from(element).toPdf().output('blob').then(async function(pdfBlob) {
-                
-                // Triggers local browser save/download execution
-                html2pdf().set(opt).from(element).save();
+                // Single worker instance optimization pipeline to avoid dark background page memory crashing
+                const worker = html2pdf().set(opt).from(element).toPdf();
 
-                // RESTORE GRAPHICS POST-COMPILE FOR INTERACTIVE PAGE VIEW
-                capImg.classList.add('hidden');
-                capCanvas.classList.remove('hidden');
-                vcImg.classList.add('hidden');
-                vcCanvas.classList.remove('hidden');
+                worker.output('blob').then(async function(pdfBlob) {
+                    
+                    // Trigger the file browser download interface save safely from current document engine state
+                    worker.save();
 
-                document.getElementById('hsTeamName').value = teamName;
-                document.getElementById('hsDivision').value = preferredDivision;
-                document.getElementById('hsCapName').value = capName;
-                document.getElementById('hsCapPhone').value = capPhone;
+                    // Restore visual UI controls seamlessly for the user layout interface
+                    capImg.classList.add('hidden');
+                    capCanvas.classList.remove('hidden');
+                    vcImg.classList.add('hidden');
+                    vcCanvas.classList.remove('hidden');
 
-                const fileContainer = new DataTransfer();
-                const file = new File([pdfBlob], `${teamName.replace(/\s+/g, '_')}_Registration_Pack.pdf`, { type: "application/pdf" });
-                fileContainer.items.add(file);
-                document.getElementById('hsPdfFile').files = fileContainer.files;
+                    document.getElementById('hsTeamName').value = teamName;
+                    document.getElementById('hsDivision').value = preferredDivision;
+                    document.getElementById('hsCapName').value = capName;
+                    document.getElementById('hsCapPhone').value = capPhone;
 
-                const hiddenForm = document.getElementById('hiddenFormspree');
-                const formData = new FormData(hiddenForm);
+                    const fileContainer = new DataTransfer();
+                    const file = new File([pdfBlob], `${teamName.replace(/\s+/g, '_')}_Registration_Pack.pdf`, { type: "application/pdf" });
+                    fileContainer.items.add(file);
+                    document.getElementById('hsPdfFile').files = fileContainer.files;
 
-                try {
-                    const response = await fetch(hiddenForm.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
+                    const hiddenForm = document.getElementById('hiddenFormspree');
+                    const formData = new FormData(hiddenForm);
+
+                    try {
+                        const response = await fetch(hiddenForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            btn.innerHTML = `<span>✔ Fully Registered & Saved!</span>`;
+                            btn.classList.remove('bg-neonGreen', 'hover:bg-neonGreenHover');
+                            btn.classList.add('bg-green-600', 'text-white');
+                            alert(`Awesome! ${teamName} has been fully registered! The official PDF is downloading now. See you on court!`);
+                        } else {
+                            throw new Error("Formspree server returned an error.");
                         }
-                    });
-
-                    if (response.ok) {
-                        btn.innerHTML = `<span>✔ Fully Registered & Saved!</span>`;
-                        btn.classList.remove('bg-neonGreen', 'hover:bg-neonGreenHover');
-                        btn.classList.add('bg-green-600', 'text-white');
-                        alert(`Awesome! ${teamName} has been fully registered! The official PDF is downloading now. See you on court!`);
-                    } else {
-                        throw new Error("Formspree server returned an error.");
+                    } catch (submitErr) {
+                        console.error(submitErr);
+                        btn.disabled = false;
+                        btn.innerHTML = `<span>❌ Error sending data. Try again</span>`;
+                        btn.style.opacity = '1';
+                        alert("The PDF generated, but we couldn't send the data to the server. Please check your internet connection and try again.");
                     }
-                } catch (submitErr) {
-                    console.error(submitErr);
+
+                }).catch(function(err) {
+                    console.error(err);
+                    
+                    // Safe graphic fallbacks UI error reset
+                    capImg.classList.add('hidden');
+                    capCanvas.classList.remove('hidden');
+                    vcImg.classList.add('hidden');
+                    vcCanvas.classList.remove('hidden');
+
                     btn.disabled = false;
-                    btn.innerHTML = `<span>❌ Error sending data. Try again</span>`;
+                    btn.innerHTML = `<span>❌ Error. Tap to try again</span>`;
                     btn.style.opacity = '1';
-                    alert("The PDF generated, but we couldn't send the data to the server. Please check your internet connection and try again.");
-                }
-
-            }).catch(function(err) {
-                console.error(err);
-                
-                // RESTORE GRAPHICS ON FAIL
-                capImg.classList.add('hidden');
-                capCanvas.classList.remove('hidden');
-                vcImg.classList.add('hidden');
-                vcCanvas.classList.remove('hidden');
-
-                btn.disabled = false;
-                btn.innerHTML = `<span>❌ Error. Tap to try again</span>`;
-                btn.style.opacity = '1';
-                alert("Something went wrong compiling your registration. Please try submitting again!");
-            });
+                    alert("Something went wrong compiling your registration. Please try submitting again!");
+                });
+            }, 150);
         }
 
-        // Initialize Canvases
         setupCanvas('captainCanvas');
         setupCanvas('viceCaptainCanvas');
     </script>
 </body>
 </html>
-
