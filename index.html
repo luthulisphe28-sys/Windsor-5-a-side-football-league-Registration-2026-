@@ -26,8 +26,8 @@
                         navyMedium: '#0B132B',
                         neonGreen: '#39FF14',
                         neonGreenHover: '#2eff00',
-                        pitchBlack: '#000000',
-                        cardGray: '#0A0E17',
+                        pitchBlack: '#0A0E17',
+                        cardGray: '#0F172A',
                     },
                     fontFamily: {
                         sports: ['Impact', 'Trebuchet MS', 'sans-serif'],
@@ -60,8 +60,10 @@
             page-break-before: always;
         }
         .pdf-text-value {
-            color: #ffffff !important;
+            color: #39FF14 !important;
             font-weight: 600;
+            display: inline-block;
+            padding: 2px 4px;
         }
     </style>
 </head>
@@ -81,40 +83,34 @@
         </div>
     </div>
 
-    <div id="pdfContent">
+    <div id="pdfContent" class="bg-navyDark min-h-screen">
         
-        <header class="bg-pitchBlack border-b border-neonGreen/20 py-6 px-4 text-center relative overflow-hidden flex justify-center items-center">
-            <div class="max-w-xl w-full">
-                <img src="1784110708744.jpeg" 
-                     alt="Windsor Sports Centre" 
-                     crossorigin="anonymous"
-                     class="mx-auto max-w-full h-auto w-[450px] block"
-                     onerror="this.style.display='none'; document.getElementById('logoFallback').classList.remove('hidden');">
-                
-                <div id="logoFallback" class="hidden text-center py-4">
-                    <h1 class="text-4xl font-sports tracking-tight text-white uppercase italic">
-                        WINDSOR <span class="text-neonGreen">SPORTS CENTRE</span>
-                    </h1>
-                </div>
+        <!-- Clean Header Section -->
+        <header class="bg-pitchBlack border-b border-neonGreen/30 py-8 px-4 text-center">
+            <div class="max-w-xl mx-auto space-y-2">
+                <h1 class="text-3xl md:text-5xl font-sports tracking-wider text-white uppercase italic">
+                    WINDSOR <span class="text-neonGreen">SPORTS CENTRE</span>
+                </h1>
+                <p class="text-xs font-mono uppercase tracking-widest text-gray-400">Volksrust, South Africa</p>
             </div>
         </header>
 
         <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-12">
 
             <div class="text-center space-y-3 pb-6 border-b border-neonGreen/20">
-                <h2 class="text-xl md:text-2xl font-bold uppercase tracking-wider text-gray-300">
+                <h2 class="text-xl md:text-2xl font-bold uppercase tracking-wider text-gray-200">
                     5-A-Side Football League Official Rulebook & Registration Pack
                 </h2>
-                <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold uppercase tracking-widest text-gray-400 pt-2">
-                    <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">📍 Windsor Sports Centre</span>
-                    <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">🏆 R3,000 Grand Prize</span>
-                    <span class="bg-pitchBlack border border-neonGreen/20 px-3 py-1 rounded">📅 Starts Aug 2026</span>
+                <div class="flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-widest text-gray-300 pt-2">
+                    <span class="bg-pitchBlack border border-neonGreen/30 px-3 py-1.5 rounded">📍 Windsor Sports Centre</span>
+                    <span class="bg-pitchBlack border border-neonGreen/30 px-3 py-1.5 rounded">🏆 R3,000 Grand Prize</span>
+                    <span class="bg-pitchBlack border border-neonGreen/30 px-3 py-1.5 rounded">📅 Starts Aug 2026</span>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="md:col-span-2 space-y-6">
-                    <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-4 shadow-lg shadow-black/50">
+                    <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-4 shadow-lg">
                         <div class="flex items-center gap-3">
                             <span class="text-neonGreen text-xl font-bold">1.0</span>
                             <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">LEAGUE OVERVIEW & STRUCTURE</h3>
@@ -127,14 +123,14 @@
                             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest">DIVISIONS & TEAMS</h4>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div class="bg-navyDark border border-gray-800 p-3 rounded-lg flex items-center gap-3">
-                                    <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-neonGreen"></span>
                                     <div>
                                         <p class="font-bold text-white text-sm">Windsor Premier League</p>
                                         <p class="text-xs text-gray-400">10 Elite Division Teams</p>
                                     </div>
                                 </div>
                                 <div class="bg-navyDark border border-gray-800 p-3 rounded-lg flex items-center gap-3">
-                                    <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-neonGreen"></span>
                                     <div>
                                         <p class="font-bold text-white text-sm">Windsor Championship</p>
                                         <p class="text-xs text-gray-400">10 Secondary Tier Teams</p>
@@ -146,7 +142,7 @@
                 </div>
 
                 <div class="space-y-6">
-                    <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 space-y-6 shadow-xl shadow-neonGreen/5">
+                    <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 space-y-6 shadow-xl">
                         <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen text-center border-b border-neonGreen/20 pb-3">
                             FINANCIAL COMMITMENTS
                         </h3>
@@ -154,25 +150,25 @@
                         <div class="text-center space-y-1">
                             <p class="text-xs text-gray-400 uppercase tracking-widest">Team Registration Fee</p>
                             <p class="text-3xl font-sports text-white">R1,400</p>
-                            <p class="text-[10px] text-gray-500 italic">EFT or Cash cleared to secure slot</p>
+                            <p class="text-[10px] text-gray-400 italic">EFT or Cash cleared to secure slot</p>
                         </div>
 
                         <div class="text-center space-y-1 border-t border-gray-800 pt-4">
                             <p class="text-xs text-gray-400 uppercase tracking-widest">Match Fee</p>
                             <p class="text-2xl font-sports text-white">R100</p>
-                            <p class="text-[10px] text-gray-500 italic">Payable to official prior to kickoff</p>
+                            <p class="text-[10px] text-gray-400 italic">Payable to official prior to kickoff</p>
                         </div>
 
-                        <div class="bg-neonGreen text-black p-4 rounded-lg text-center space-y-1 shadow-md shadow-neonGreen/10">
+                        <div class="bg-neonGreen text-black p-4 rounded-lg text-center space-y-1 shadow-md">
                             <p class="text-xs uppercase tracking-widest font-bold opacity-80">League Champions Prize</p>
                             <p class="text-3xl font-sports font-black">R3,000</p>
-                            <p class="text-[10px] font-bold opacity-70 uppercase tracking-wider">Cash Grand Prize</p>
+                            <p class="text-[10px] font-bold opacity-80 uppercase tracking-wider">Cash Grand Prize</p>
                         </div>
                     </section>
                 </div>
             </div>
 
-            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 shadow-lg shadow-black/50">
+            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 shadow-lg">
                 <div class="flex items-center gap-3">
                     <span class="text-neonGreen text-xl font-bold">2.0</span>
                     <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">TEAM ROSTERS & MATCH SCHEDULING</h3>
@@ -183,15 +179,15 @@
                         <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Squad Composition</h4>
                         <ul class="space-y-3 text-sm text-gray-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span class="text-neonGreen font-bold">✔</span>
                                 <span><strong>Roster Size:</strong> Register between 5 and 10 players maximum per team.</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span class="text-neonGreen font-bold">✔</span>
                                 <span><strong>Active Play:</strong> A maximum of 5 active players (including the goalkeeper) on court.</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span class="text-neonGreen font-bold">✔</span>
                                 <span><strong>Rolling Subs:</strong> Dynamic swaps allowed. Exiting player must fully exit the touchline before substitute enters.</span>
                             </li>
                         </ul>
@@ -201,15 +197,15 @@
                         <h4 class="text-sm font-bold text-white uppercase tracking-widest border-b border-gray-800 pb-2">Match Times & Rules</h4>
                         <ul class="space-y-3 text-sm text-gray-300">
                             <li class="flex items-start gap-2.5">
-                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span class="text-neonGreen font-bold">✔</span>
                                 <span><strong>Weekly Fixtures:</strong> Played Monday through Thursday (18:00 - 21:00).</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span class="text-neonGreen font-bold">✔</span>
                                 <span><strong>Match Duration:</strong> Two 20-minute halves divided by a 5-minute halftime.</span>
                             </li>
                             <li class="flex items-start gap-2.5">
-                                <span class="text-neonGreen mt-0.5">✔</span>
+                                <span class="text-neonGreen font-bold">✔</span>
                                 <span><strong>Forfeit Rule:</strong> Teams must arrive 15 mins early. If 4 players are not fielded within 10 mins of start time, a forfeit is triggered (3-0 loss).</span>
                             </li>
                         </ul>
@@ -228,7 +224,7 @@
                 </div>
             </section>
 
-            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 shadow-lg shadow-black/50">
+            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 md:p-8 space-y-6 shadow-lg">
                 <div class="flex items-center gap-3">
                     <span class="text-neonGreen text-xl font-bold">3.0</span>
                     <h3 class="text-xl font-sports uppercase tracking-wider text-neonGreen">GENERAL GAMEPLAY REGULATIONS</h3>
@@ -238,7 +234,7 @@
                     <p class="text-xs uppercase tracking-widest font-black text-red-400 flex items-center gap-2">
                         🚨 CRITICAL SAFETY DIRECTIVE
                     </p>
-                    <p class="text-sm text-gray-200">
+                    <p class="text-sm text-gray-200 leading-relaxed">
                         <strong>No Slide Tackling:</strong> Sliding along the ground to challenge, intercept, or tackle an opponent is <strong>strictly banned</strong>. Any violation results in an immediate <strong>Yellow Card (2-minute suspension)</strong> and an indirect free kick awarded to the opposing side. Hard physical contact, excessive shoulder-charging, and pushing are heavily penalized.
                     </p>
                 </div>
@@ -247,82 +243,66 @@
                     <div class="space-y-2">
                         <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.1 Equipment & Uniform</h4>
                         <p class="text-xs text-gray-300 leading-relaxed">
-                            Matches are executed utilizing a regulation **Size 5 football**. All players must wear flat-soled indoor football shoes or standard running takkies. Outdoor cleats or metal-studded boots are **strictly prohibited**.
+                            Matches are executed utilizing a regulation Size 5 football. All players must wear flat-soled indoor football shoes or standard running takkies. Outdoor cleats or metal-studded boots are strictly prohibited.
                         </p>
                     </div>
 
                     <div class="space-y-2">
                         <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.2 Corner Shielding Limit</h4>
                         <p class="text-xs text-gray-300 leading-relaxed">
-                            Players shielding or handling the ball in the corner circle have exactly **5 seconds** (called aloud by referee) to cleanly pass the ball or exit. Over-shielding results in immediate turnover.
+                            Players shielding or handling the ball in the corner circle have exactly 5 seconds (called aloud by referee) to cleanly pass the ball or exit. Over-shielding results in immediate turnover.
                         </p>
                     </div>
 
                     <div class="space-y-2">
                         <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">3.3 The 5-Second Restart</h4>
                         <p class="text-xs text-gray-300 leading-relaxed">
-                            All set-pieces and restarts (kick-ins, free kicks, corners, goalie clearance throws) must be executed within **5 seconds** from whistle. Defending walls must stand at least **5 paces (meters)** back.
+                            All set-pieces and restarts (kick-ins, free kicks, corners, goalie clearance throws) must be executed within 5 seconds from whistle. Defending walls must stand at least 5 paces (meters) back.
                         </p>
                     </div>
                 </div>
             </section>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 shadow-lg shadow-black/50 space-y-4">
+                <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 shadow-lg space-y-4">
                     <div class="flex items-center gap-3">
                         <span class="text-neonGreen text-lg font-bold">4.0</span>
                         <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen">GOALKEEPER REGULATIONS</h3>
                     </div>
                     <div class="space-y-3 text-xs md:text-sm text-gray-300">
-                        <p>
-                            ⚽ <strong>Tactical Back-Pass:</strong> Strictly **one (1) back-pass** per half is permitted. Additional passes award an indirect free-kick to the opposition from the outer edge of the penalty box.
-                        </p>
-                        <p>
-                            ⚽ <strong>Area of Play:</strong> Hands can only be used inside the penalty box. Goalie must release/distribute the ball within **5 seconds** of gaining control.
-                        </p>
-                        <p>
-                            ⚽ <strong>Clean Saves:</strong> Goalkeepers can slide *only* to block a shot or save inside their penalty area, provided the challenge is clean and doesn't show studs.
-                        </p>
-                        <p>
-                            ⚽ <strong>Scoring:</strong> Goals scored directly by the goalkeeper must be kicked along the ground. Launching or throwing the ball by hand does not count as a valid score.
-                        </p>
+                        <p>⚽ <strong>Tactical Back-Pass:</strong> Strictly one (1) back-pass per half is permitted. Additional passes award an indirect free-kick to opposition.</p>
+                        <p>⚽ <strong>Area of Play:</strong> Hands can only be used inside the penalty box. Goalie must release ball within 5 seconds.</p>
+                        <p>⚽ <strong>Clean Saves:</strong> Goalkeepers can slide only to block shots inside their penalty area cleanly.</p>
+                        <p>⚽ <strong>Scoring:</strong> Goals scored directly by the goalkeeper must be kicked along the ground.</p>
                     </div>
                 </section>
 
-                <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 shadow-lg shadow-black/50 space-y-4">
+                <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-6 shadow-lg space-y-4">
                     <div class="flex items-center gap-3">
                         <span class="text-neonGreen text-lg font-bold">5.0</span>
                         <h3 class="text-lg font-sports uppercase tracking-wider text-neonGreen">DISCIPLINARY CODE & KICKS</h3>
                     </div>
                     <div class="space-y-3 text-xs md:text-sm text-gray-300">
-                        <p>
-                            ⚽ <strong>No Run-Up Penalty:</strong> All penalty kicks must be executed from a static, stationary stance. The non-striking foot must remain planted flat beside the ball.
-                        </p>
-                        <p>
-                            🟨 <span class="text-yellow-400 font-bold">Yellow Card:</span> Carries an automatic **2-minute temporary suspension (Sin Bin)**. Team plays down a player for the duration.
-                        </p>
-                        <p>
-                            🟥 <span class="text-red-500 font-bold">Red Card:</span> Immediate ejection for the remainder of the match. Triggers an automatic **1-game suspension** covering the next scheduled fixture.
-                        </p>
-                        <p>
-                            🛑 <strong>Conduct & Referee:</strong> Fighting, verbal abuse, coarse language, or official intimidation will cause immediate expulsion. **The referee's decision is final.**
-                        </p>
+                        <p>⚽ <strong>No Run-Up Penalty:</strong> All penalty kicks must be executed from a static, stationary stance.</p>
+                        <p>🟨 <span class="text-yellow-400 font-bold">Yellow Card:</span> Automatic 2-minute temporary suspension (Sin Bin).</p>
+                        <p>🟥 <span class="text-red-500 font-bold">Red Card:</span> Immediate ejection and an automatic 1-game suspension for next fixture.</p>
+                        <p>🛑 <strong>Conduct:</strong> Fighting or intimidation will cause immediate expulsion. The referee's decision is final.</p>
                     </div>
                 </section>
             </div>
 
             <div class="html2pdf__page-break"></div>
 
-            <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 md:p-8 space-y-6 shadow-xl shadow-neonGreen/5">
+            <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-6 md:p-8 space-y-6 shadow-xl">
                 <div class="text-center space-y-2 border-b border-gray-800 pb-4">
-                    <span class="bg-neonGreen text-black text-[10px] font-black px-2 py-0.5 rounded tracking-widest uppercase font-mono">REGISTRATION DESK</span>
+                    <span class="bg-neonGreen text-black text-[10px] font-black px-2.5 py-1 rounded tracking-widest uppercase font-mono">REGISTRATION DESK</span>
                     <h3 class="text-3xl font-sports uppercase tracking-wider text-white">OFFICIAL TEAM REGISTRATION FORM</h3>
                     <p class="text-xs text-gray-400 italic">Complete details below. Submitting will instantly compile and register your squad.</p>
                 </div>
 
                 <div class="space-y-8" id="formWrapper">
                     <div class="space-y-4">
-                        <h4 class="text-sm font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">SQUAD DETAILS</h4>
+                        <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest border-b border-gray-800 pb-1">SQUAD DETAILS</h4>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="space-y-1">
                                 <label class="text-xs font-semibold text-gray-300">TEAM NAME</label>
@@ -468,7 +448,7 @@
                                     
                                     <div id="previewContainer" class="mt-3 hidden">
                                         <p class="text-[10px] text-neonGreen font-bold mb-1">✔ POP Attached Successfully:</p>
-                                        <img id="receiptPreview" src="" crossorigin="anonymous" class="max-w-full max-h-48 border border-gray-700 rounded p-1 bg-black/40">
+                                        <img id="receiptPreview" src="" class="max-w-full max-h-48 border border-gray-700 rounded p-1 bg-black/40">
                                     </div>
                                 </div>
                             </div>
@@ -512,7 +492,7 @@
                     </div>
 
                     <div class="no-print pt-6">
-                        <button type="button" onclick="handleSubmit()" id="submitBtn" class="w-full bg-neonGreen hover:bg-neonGreenHover text-pitchBlack h-14 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-lg shadow-neonGreen/20 flex items-center justify-center gap-2">
+                        <button type="button" onclick="handleSubmit()" id="submitBtn" class="w-full bg-neonGreen hover:bg-neonGreenHover text-pitchBlack h-14 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-lg flex items-center justify-center gap-2 cursor-pointer">
                             <span>🚀 Submit Registration & Download Official PDF</span>
                         </button>
                     </div>
@@ -543,6 +523,10 @@
             const canvas = document.getElementById(id);
             const ctx = canvas.getContext('2d');
             let drawing = false;
+
+            // Fill background with navy dark to prevent black box artifacts in PDF
+            ctx.fillStyle = '#070B19';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             function getCoordinates(event) {
                 const rect = canvas.getBoundingClientRect();
@@ -602,7 +586,8 @@
         function clearCanvas(id) {
             const canvas = document.getElementById(id);
             const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#070B19';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             canvasStates[id] = false;
             
             const imgId = id === 'captainCanvas' ? 'captainSignatureImage' : 'viceCaptainSignatureImage';
@@ -655,7 +640,7 @@
             inputs.forEach(input => {
                 const textSpan = document.createElement('span');
                 textSpan.className = 'pdf-text-value';
-                textSpan.innerText = input.value || input.placeholder || '';
+                textSpan.innerText = input.value || input.placeholder || '—';
                 input.dataset.originalDisplay = input.style.display;
                 input.style.display = 'none';
                 input.parentNode.insertBefore(textSpan, input.nextSibling);
@@ -716,11 +701,11 @@
                 const opt = {
                     margin:       [5, 5, 5, 5], 
                     filename:     formattedFileName,
-                    image:        { type: 'jpeg', quality: 0.70 },
+                    image:        { type: 'jpeg', quality: 0.85 },
                     html2canvas:  { 
-                        scale: 1.5, 
+                        scale: 2, 
                         useCORS: true, 
-                        allowTaint: true,
+                        allowTaint: false,
                         backgroundColor: '#070B19',
                         logging: false
                     },
@@ -742,39 +727,37 @@
                     vcImg.classList.add('hidden');
                     vcCanvas.classList.remove('hidden');
 
-                    const formData = new FormData();
-                    formData.append('email', capEmail);
-                    formData.append('Team_Name', teamName);
-                    formData.append('Preferred_Division', preferredDivision);
-                    formData.append('Captain_Name', capName);
-                    formData.append('Captain_Phone', capPhone);
-
-                    const pdfFile = new File([pdfBlob], formattedFileName, { type: "application/pdf" });
-                    formData.append('upload', pdfFile);
-
                     try {
                         const response = await fetch("https://formspree.io/f/xvzegnep", {
                             method: 'POST',
-                            body: formData,
                             headers: {
+                                'Content-Type': 'application/json',
                                 'Accept': 'application/json'
-                            }
+                            },
+                            body: JSON.stringify({
+                                Team_Name: teamName,
+                                Preferred_Division: preferredDivision,
+                                Captain_Name: capName,
+                                Captain_Phone: capPhone,
+                                Captain_Email: capEmail,
+                                Status: "PDF Downloaded directly by Captain"
+                            })
                         });
 
                         if (response.ok) {
                             btn.innerHTML = `<span>✔ Fully Registered & Saved!</span>`;
                             btn.classList.remove('bg-neonGreen', 'hover:bg-neonGreenHover');
                             btn.classList.add('bg-green-600', 'text-white');
-                            alert(`Awesome! ${teamName} has been fully registered! The official PDF is downloading now.`);
+                            alert(`Awesome! ${teamName} has been fully registered! The official PDF is downloading to your device now.`);
                         } else {
-                            throw new Error("Formspree server returned an error.");
+                            throw new Error("Formspree rejected submission");
                         }
                     } catch (submitErr) {
                         console.error(submitErr);
                         btn.disabled = false;
-                        btn.innerHTML = `<span>❌ Error sending data. Try again</span>`;
+                        btn.innerHTML = `<span>✔ PDF Saved (Server Notice Pending)</span>`;
                         btn.style.opacity = '1';
-                        alert("The PDF generated, but we couldn't send the data to Formspree. Please check your internet connection and try again.");
+                        alert("Your PDF registration form has downloaded successfully! If you experience connection issues sending the email notification, please send the downloaded PDF directly to 063 225 1773.");
                     }
 
                 }).catch(function(err) {
@@ -790,7 +773,7 @@
                     btn.style.opacity = '1';
                     alert("Something went wrong compiling your registration. Please try submitting again!");
                 });
-            }, 200);
+            }, 300);
         }
 
         setupCanvas('captainCanvas');
