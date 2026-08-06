@@ -481,7 +481,7 @@
             });
         }
 
-        function handleSubmit() {
+        async function handleSubmit() {
             const btn = document.getElementById('submitBtn');
             const teamName = document.getElementById('teamNameField').value.trim();
             const preferredDivision = document.getElementById('divisionField').value;
@@ -503,10 +503,41 @@
                 }
             }
 
+            // Grab form values BEFORE convertInputsToText runs
+            const formData = {
+                Team_Name: teamName,
+                Division: preferredDivision,
+                Captain_Name: capName,
+                Captain_Phone: capPhone,
+                Captain_Email: capEmail,
+                Vice_Captain_Name: document.getElementById('vcName')?.value.trim() || 'N/A',
+                Vice_Captain_Phone: document.getElementById('vcPhone')?.value.trim() || 'N/A',
+                Vice_Captain_Email: document.getElementById('vcEmail')?.value.trim() || 'N/A'
+            };
+
+            for (let i = 1; i <= 10; i++) {
+                const name = document.getElementById(`p${i}Name`)?.value.trim();
+                const idNum = document.getElementById(`p${i}ID`)?.value.trim();
+                if (name || idNum) {
+                    formData[`Player_${i}`] = `${name || 'N/A'} (ID: ${idNum || 'N/A'})`;
+                }
+            }
+
             btn.disabled = true;
-            btn.innerHTML = `<span>⏳ Generating Official PDF...</span>`;
+            btn.innerHTML = `<span>⏳ Processing Registration...</span>`;
             btn.style.opacity = '0.7';
 
+            // Send notification to Formspree
+            fetch("https://formspree.io/f/xvzegnep", {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'Accept': 'application/json' 
+                },
+                body: JSON.stringify(formData)
+            }).catch(err => console.error("Formspree notify error:", err));
+
+            // Continue standard PDF generation
             const hiddenSubRows = [];
             document.querySelectorAll('.sub-row').forEach(row => {
                 if (row.classList.contains('hidden')) {
@@ -527,7 +558,6 @@
             });
 
             convertInputsToText();
-
             document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
 
             setTimeout(() => {
@@ -550,8 +580,7 @@
 
                 html2pdf().set(opt).from(element).toPdf().get('pdf').then(function(pdfObj) {
                     return pdfObj.output('blob');
-                }).then(async function(pdfBlob) {
-                    
+                }).then(function(pdfBlob) {
                     const downloadLink = document.createElement('a');
                     downloadLink.href = URL.createObjectURL(pdfBlob);
                     downloadLink.download = formattedFileName;
@@ -568,41 +597,9 @@
                         document.getElementById(id).classList.remove('hidden');
                     });
 
-                    const rosterData = {};
-                    for (let i = 1; i <= 10; i++) {
-                        const name = document.getElementById(`p${i}Name`)?.value.trim();
-                        const idNum = document.getElementById(`p${i}ID`)?.value.trim();
-                        if (name || idNum) {
-                            rosterData[`Player_${i}`] = `${name || 'N/A'} (ID: ${idNum || 'N/A'})`;
-                        }
-                    }
-
-                    try {
-                        await fetch("https://formspree.io/f/xvzegnep", {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                            body: JSON.stringify({
-                                Team_Name: teamName,
-                                Division: preferredDivision,
-                                Captain_Name: capName,
-                                Captain_Phone: capPhone,
-                                Captain_Email: capEmail,
-                                Vice_Captain_Name: document.getElementById('vcName')?.value.trim() || 'N/A',
-                                Vice_Captain_Phone: document.getElementById('vcPhone')?.value.trim() || 'N/A',
-                                Vice_Captain_Email: document.getElementById('vcEmail')?.value.trim() || 'N/A',
-                                Roster: rosterData,
-                                Status: "PDF Generated & Submitted"
-                            })
-                        });
-
-                        btn.innerHTML = `<span>✔ Registered & Downloaded!</span>`;
-                        btn.className = "w-full bg-green-600 text-white h-12 rounded-xl text-xs font-black uppercase tracking-widest";
-                        alert(`Success! ${teamName} is registered. The PDF has downloaded to your device.`);
-                    } catch (e) {
-                        btn.disabled = false;
-                        btn.style.opacity = '1';
-                        btn.innerHTML = `<span>✔ PDF Downloaded (Formspree Offline)</span>`;
-                    }
+                    btn.innerHTML = `<span>✔ Registered & Downloaded!</span>`;
+                    btn.className = "w-full bg-green-600 text-white h-12 rounded-xl text-xs font-black uppercase tracking-widest";
+                    alert(`Success! ${teamName} is registered. The PDF has downloaded to your device.`);
 
                 }).catch(function(err) {
                     console.error(err);
@@ -622,4 +619,3 @@
     </script>
 </body>
 </html>
-
