@@ -121,12 +121,12 @@
 
             <div class="text-center space-y-2 pb-2">
                 <h2 class="text-lg font-bold uppercase tracking-wider text-neonGreen">
-                    5-A-Side Football League Official Rulebook & Registration Pack
+                    5-A-Side Premier Football League Official Rulebook & Registration Pack
                 </h2>
                 <div class="flex flex-wrap justify-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-gray-300">
                     <span class="bg-pitchBlack border border-neonGreen/30 px-2.5 py-1 rounded">📍 Windsor Sports Centre</span>
                     <span class="bg-pitchBlack border border-neonGreen/30 px-2.5 py-1 rounded">🏆 R3,000 Grand Prize</span>
-                    <span class="bg-pitchBlack border border-neonGreen/30 px-2.5 py-1 rounded">📅 Starts Aug 2026</span>
+                    <span class="bg-red-950/80 border border-red-500/50 text-red-400 px-2.5 py-1 rounded animate-pulse">🔥 ONLY 3 SPOTS LEFT (7/10 FILLED)</span>
                 </div>
             </div>
 
@@ -138,25 +138,21 @@
                             <h3 class="text-base font-sports uppercase tracking-wider text-neonGreen">LEAGUE OVERVIEW & STRUCTURE</h3>
                         </div>
                         <p class="text-gray-300 text-xs leading-relaxed">
-                            The Windsor Sports Centre 5-A-Side Football League is established to promote competitive, safe, and structured local football. All squad managers, players, and associates completely agree to follow and enforce the guidelines detailed below.
+                            The Windsor Sports Centre 5-A-Side Premier Football League is established to promote competitive, safe, and structured local football. All squad managers, players, and associates completely agree to follow and enforce the guidelines detailed below.
                         </p>
                         <div class="border-t border-gray-800 pt-3 space-y-2">
-                            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">DIVISIONS & TEAMS</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <div class="bg-navyDark border border-gray-800 p-2 rounded flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">OFFICIAL LEAGUE DIVISION</h4>
+                            <div class="bg-navyDark border border-neonGreen/40 p-3 rounded flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-neonGreen"></span>
                                     <div>
-                                        <p class="font-bold text-white text-xs">Premier League</p>
-                                        <p class="text-[10px] text-gray-400">10 Elite Teams</p>
+                                        <p class="font-bold text-white text-xs uppercase tracking-wider">Windsor Premier League</p>
+                                        <p class="text-[10px] text-gray-400">Strictly Limited to 10 Elite Squads</p>
                                     </div>
                                 </div>
-                                <div class="bg-navyDark border border-gray-800 p-2 rounded flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-neonGreen"></span>
-                                    <div>
-                                        <p class="font-bold text-white text-xs">Championship</p>
-                                        <p class="text-[10px] text-gray-400">10 Tier Teams</p>
-                                    </div>
-                                </div>
+                                <span class="bg-neonGreen/10 border border-neonGreen/30 text-neonGreen text-[10px] font-bold px-2 py-1 rounded">
+                                    7 Registered • 3 Open
+                                </span>
                             </div>
                         </div>
                     </section>
@@ -169,7 +165,7 @@
                         </h3>
                         <div>
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest">Team Registration Fee</p>
-                            <p class="text-2xl font-sports text-white">R1,400</p>
+                            <p class="text-2xl font-sports text-white">R600</p>
                         </div>
                         <div class="border-t border-gray-800 pt-2">
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest">Match Fee</p>
@@ -240,9 +236,7 @@
                         <div class="space-y-1">
                             <label class="text-xs font-semibold text-gray-300">PREFERRED DIVISION</label>
                             <select id="divisionField" required class="pdf-input w-full bg-navyDark border border-gray-800 focus:border-neonGreen outline-none text-white px-3 py-2 rounded text-xs">
-                                <option value="" disabled selected>-- Select One --</option>
-                                <option value="Windsor Premier League">Windsor Premier League</option>
-                                <option value="Windsor Championship League">Windsor Championship League</option>
+                                <option value="Windsor Premier League" selected>Windsor Premier League</option>
                             </select>
                         </div>
                     </div>
@@ -385,7 +379,6 @@
             ctx.fillStyle = '#070B19';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // FIX: Correct coordinate scaling formula for responsive canvas
             function getCoords(e) {
                 const rect = canvas.getBoundingClientRect();
                 const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -512,7 +505,6 @@
                 return;
             }
 
-            // Verify starting 5 players are filled
             for (let i = 1; i <= 5; i++) {
                 const pName = document.getElementById(`p${i}Name`).value.trim();
                 const pID = document.getElementById(`p${i}ID`).value.trim();
@@ -526,7 +518,6 @@
             btn.innerHTML = `<span>⏳ Generating Official PDF...</span>`;
             btn.style.opacity = '0.7';
 
-            // Ensure all substitute rows are visible in the PDF
             const hiddenSubRows = [];
             document.querySelectorAll('.sub-row').forEach(row => {
                 if (row.classList.contains('hidden')) {
@@ -535,7 +526,6 @@
                 }
             });
 
-            // Convert canvas signatures to images for PDF rendering
             ['captainCanvas', 'viceCaptainCanvas'].forEach(id => {
                 const canvas = document.getElementById(id);
                 const imgId = id === 'captainCanvas' ? 'captainSignatureImage' : 'viceCaptainSignatureImage';
@@ -549,7 +539,6 @@
 
             convertInputsToText();
 
-            // Temporarily hide UI elements marked no-print
             document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
 
             setTimeout(() => {
@@ -574,17 +563,14 @@
                     return pdfObj.output('blob');
                 }).then(async function(pdfBlob) {
                     
-                    // Trigger instant download
                     const downloadLink = document.createElement('a');
                     downloadLink.href = URL.createObjectURL(pdfBlob);
                     downloadLink.download = formattedFileName;
                     downloadLink.click();
 
-                    // Restore original page state
                     document.querySelectorAll('.no-print').forEach(el => el.style.display = '');
                     restoreInputsFromText();
                     
-                    // Re-hide sub rows if they were previously hidden
                     hiddenSubRows.forEach(row => row.classList.add('hidden'));
 
                     ['captainCanvas', 'viceCaptainCanvas'].forEach(id => {
@@ -593,7 +579,6 @@
                         document.getElementById(id).classList.remove('hidden');
                     });
 
-                    // Gather full player roster data for Formspree
                     const rosterData = {};
                     for (let i = 1; i <= 10; i++) {
                         const name = document.getElementById(`p${i}Name`)?.value.trim();
@@ -603,7 +588,6 @@
                         }
                     }
 
-                    // Send complete payload to Formspree
                     try {
                         await fetch("https://formspree.io/f/xvzegnep", {
                             method: 'POST',
@@ -649,3 +633,639 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windsor Sports Centre - 5-A-Side Official Pack</title>
+    
+    <meta property="og:title" content="Windsor Sports Centre | 5-A-Side Registration">
+    <meta property="og:description" content="Register your team for the upcoming 5-A-Side Football League.">
+    <meta property="og:image" content="https://luthulisphe28-sys.github.io/Windsor-5-a-side-football-league-Registration-2026-/1784110708744.jpeg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://luthulisphe28-sys.github.io/Windsor-5-a-side-football-league-Registration-2026-/">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navyDark: '#070B19',
+                        navyMedium: '#0B132B',
+                        neonGreen: '#39FF14',
+                        neonGreenHover: '#2eff00',
+                        pitchBlack: '#0A0E17',
+                        cardGray: '#0F172A',
+                    },
+                    fontFamily: {
+                        sports: ['Impact', 'Trebuchet MS', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070B19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #39FF14;
+            border-radius: 4px;
+        }
+        
+        /* PDF Specific Safe Styling */
+        #pdfContainer {
+            background-color: #070B19 !important;
+            color: #ffffff !important;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .pdf-page-break {
+            page-break-before: always !important;
+            break-before: page !important;
+            height: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pdf-text-value {
+            color: #39FF14 !important;
+            font-weight: 700 !important;
+            display: inline-block;
+            padding: 2px 4px;
+            font-size: 12px !important;
+            word-break: break-word;
+        }
+
+        /* Prevent element splitting inside PDF */
+        .pdf-avoid-break {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+        }
+
+        /* Table fix for html2pdf conversion */
+        table {
+            width: 100% !important;
+            table-layout: fixed !important;
+        }
+    </style>
+</head>
+<body class="bg-navyDark text-gray-100 font-sans selection:bg-neonGreen selection:text-black">
+
+    <div class="no-print bg-pitchBlack border-b border-neonGreen/30 sticky top-0 z-50 px-4 py-3 shadow-lg">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-neonGreen animate-pulse"></span>
+                <p class="text-xs sm:text-sm font-semibold tracking-wide uppercase text-gray-300">
+                    5-A-Side Football Registration Portal
+                </p>
+            </div>
+            <span class="text-xs text-neonGreen font-mono uppercase bg-neonGreen/10 px-2.5 py-1 rounded">
+                Formspree Active
+            </span>
+        </div>
+    </div>
+
+    <!-- MAIN CONVERTIBLE WRAPPER -->
+    <div id="pdfContainer" class="bg-navyDark p-4 sm:p-6">
+        
+        <!-- PAGE 1: RULEBOOK & LEAGUE DETAILS -->
+        <div id="pdfPage1" class="space-y-6">
+            <header class="bg-pitchBlack border border-neonGreen/30 py-6 px-4 text-center rounded-xl">
+                <div class="space-y-1">
+                    <h1 class="text-3xl sm:text-4xl font-sports tracking-wider text-white uppercase italic">
+                        WINDSOR <span class="text-neonGreen">SPORTS CENTRE</span>
+                    </h1>
+                    <p class="text-xs font-mono uppercase tracking-widest text-gray-400">Volksrust, South Africa</p>
+                </div>
+            </header>
+
+            <div class="text-center space-y-2 pb-2">
+                <h2 class="text-lg font-bold uppercase tracking-wider text-neonGreen">
+                    5-A-Side Premier Football League Official Rulebook & Registration Pack
+                </h2>
+                <div class="flex flex-wrap justify-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-gray-300">
+                    <span class="bg-pitchBlack border border-neonGreen/30 px-2.5 py-1 rounded">📍 Windsor Sports Centre</span>
+                    <span class="bg-pitchBlack border border-neonGreen/30 px-2.5 py-1 rounded">🏆 R3,000 Grand Prize</span>
+                    <span class="bg-red-950/80 border border-red-500/50 text-red-400 px-2.5 py-1 rounded animate-pulse">🔥 ONLY 3 SPOTS LEFT (7/10 FILLED)</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-2">
+                    <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-5 space-y-3 h-full">
+                        <div class="flex items-center gap-2">
+                            <span class="text-neonGreen text-lg font-bold">1.0</span>
+                            <h3 class="text-base font-sports uppercase tracking-wider text-neonGreen">LEAGUE OVERVIEW & STRUCTURE</h3>
+                        </div>
+                        <p class="text-gray-300 text-xs leading-relaxed">
+                            The Windsor Sports Centre 5-A-Side Premier Football League is established to promote competitive, safe, and structured local football. All squad managers, players, and associates completely agree to follow and enforce the guidelines detailed below.
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-2">
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">OFFICIAL LEAGUE DIVISION</h4>
+                            <div class="bg-navyDark border border-neonGreen/40 p-3 rounded flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-neonGreen"></span>
+                                    <div>
+                                        <p class="font-bold text-white text-xs uppercase tracking-wider">Windsor Premier League</p>
+                                        <p class="text-[10px] text-gray-400">Strictly Limited to 10 Elite Squads</p>
+                                    </div>
+                                </div>
+                                <span class="bg-neonGreen/10 border border-neonGreen/30 text-neonGreen text-[10px] font-bold px-2 py-1 rounded">
+                                    7 Registered • 3 Open
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div>
+                    <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-4 space-y-3 text-center h-full flex flex-col justify-between">
+                        <h3 class="text-sm font-sports uppercase tracking-wider text-neonGreen border-b border-neonGreen/20 pb-2">
+                            FINANCIAL COMMITMENTS
+                        </h3>
+                        <div>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Team Registration Fee</p>
+                            <p class="text-2xl font-sports text-white">R600</p>
+                        </div>
+                        <div class="border-t border-gray-800 pt-2">
+                            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Match Fee</p>
+                            <p class="text-xl font-sports text-white">R100 <span class="text-[9px] text-gray-400 font-normal">/ match</span></p>
+                        </div>
+                        <div class="bg-neonGreen text-black p-2 rounded text-center">
+                            <p class="text-[9px] uppercase tracking-widest font-bold">Grand Prize</p>
+                            <p class="text-xl font-sports font-black">R3,000</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-5 space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-neonGreen text-lg font-bold">2.0</span>
+                    <h3 class="text-base font-sports uppercase tracking-wider text-neonGreen">ROSTERS & MATCH RULES</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-300">
+                    <div>
+                        <strong class="text-white block mb-1">Squad Composition</strong>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>5 to 10 players max per team.</li>
+                            <li>5 active players (including Goalie) on court.</li>
+                            <li>Dynamic rolling subs allowed.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong class="text-white block mb-1">Match Structure</strong>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Fixtures Mon-Thu (18:00 - 21:00).</li>
+                            <li>Two 20-min halves (5-min halftime).</li>
+                            <li>10-min arrival grace period before forfeit.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-pitchBlack border border-neonGreen/30 rounded-xl p-5 space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-neonGreen text-lg font-bold">3.0</span>
+                    <h3 class="text-base font-sports uppercase tracking-wider text-neonGreen">SAFETY & REGULATION HIGHLIGHTS</h3>
+                </div>
+                <div class="bg-red-950/40 border-l-4 border-red-500 p-3 rounded-r text-xs text-gray-200">
+                    <strong>🚨 NO SLIDE TACKLING:</strong> Strictly banned. Violation results in an immediate Yellow Card (2-min suspension) and indirect free kick. Flat-soled indoor shoes or running takkies only — <strong>no metal cleats</strong>.
+                </div>
+            </section>
+        </div>
+
+        <!-- FORCE EXACT PAGE BREAK HERE -->
+        <div class="pdf-page-break"></div>
+
+        <!-- PAGE 2: REGISTRATION FORM & SIGNATURES -->
+        <div id="pdfPage2" class="space-y-6 pt-4">
+            <section class="bg-pitchBlack border-2 border-neonGreen rounded-xl p-5 sm:p-6 space-y-6">
+                <div class="text-center space-y-1 border-b border-gray-800 pb-3">
+                    <span class="bg-neonGreen text-black text-[9px] font-black px-2 py-0.5 rounded tracking-widest uppercase">REGISTRATION DESK</span>
+                    <h3 class="text-2xl font-sports uppercase tracking-wider text-white">OFFICIAL TEAM REGISTRATION FORM</h3>
+                </div>
+
+                <div class="space-y-5">
+                    <!-- Squad Info -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-xs font-semibold text-gray-300">TEAM NAME</label>
+                            <input type="text" id="teamNameField" required placeholder="Enter Team Name..." class="pdf-input w-full bg-navyDark border border-gray-800 focus:border-neonGreen outline-none text-white px-3 py-2 rounded text-xs">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-semibold text-gray-300">PREFERRED DIVISION</label>
+                            <select id="divisionField" required class="pdf-input w-full bg-navyDark border border-gray-800 focus:border-neonGreen outline-none text-white px-3 py-2 rounded text-xs">
+                                <option value="Windsor Premier League" selected>Windsor Premier League</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Contact Reps -->
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">CONTACT REPRESENTATIVES</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
+                                <thead class="bg-navyDark text-white uppercase">
+                                    <tr>
+                                        <th class="border border-gray-800 p-1.5 w-1/4 font-bold">Role</th>
+                                        <th class="border border-gray-800 p-1.5 w-1/4">Full Name</th>
+                                        <th class="border border-gray-800 p-1.5 w-1/4">Cell Number</th>
+                                        <th class="border border-gray-800 p-1.5 w-1/4">Email Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-gray-800 p-1 font-bold text-neonGreen">Captain</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="capName" required class="pdf-input w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="tel" id="capPhone" required class="pdf-input w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="email" id="capEmail" required class="pdf-input w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-800 p-1 font-bold text-neonGreen">Vice-Captain</td>
+                                        <td class="border border-gray-800 p-1"><input type="text" id="vcName" class="pdf-input w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="tel" id="vcPhone" class="pdf-input w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                        <td class="border border-gray-800 p-1"><input type="email" id="vcEmail" class="pdf-input w-full bg-transparent border-none outline-none text-white focus:ring-0"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Player Roster -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-center no-print">
+                            <h4 class="text-xs font-bold text-neonGreen uppercase tracking-widest">OFFICIAL SQUAD ROSTER (5 - 10 PLAYERS)</h4>
+                            <button type="button" onclick="toggleSubstitutes()" class="text-[10px] text-neonGreen border border-neonGreen/30 px-2 py-0.5 rounded">
+                                <span id="subBtnText">Show Subs (6-10)</span>
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-800 text-left text-xs text-gray-300">
+                                <thead class="bg-navyDark text-white uppercase">
+                                    <tr>
+                                        <th class="border border-gray-800 p-1.5 text-center w-10">#</th>
+                                        <th class="border border-gray-800 p-1.5">Player Full Name</th>
+                                        <th class="border border-gray-800 p-1.5">SA ID / Passport / Birth Cert No.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">1</td><td class="border border-gray-800 p-1"><input type="text" id="p1Name" required class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p1ID" required class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr><td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">2</td><td class="border border-gray-800 p-1"><input type="text" id="p2Name" required class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p2ID" required class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr><td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">3</td><td class="border border-gray-800 p-1"><input type="text" id="p3Name" required class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p3ID" required class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr><td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">4</td><td class="border border-gray-800 p-1"><input type="text" id="p4Name" required class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p4ID" required class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr><td class="border border-gray-800 p-1 text-center font-bold text-neonGreen">5</td><td class="border border-gray-800 p-1"><input type="text" id="p5Name" required class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p5ID" required class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr class="sub-row hidden"><td class="border border-gray-800 p-1 text-center text-gray-500">6</td><td class="border border-gray-800 p-1"><input type="text" id="p6Name" class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p6ID" class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr class="sub-row hidden"><td class="border border-gray-800 p-1 text-center text-gray-500">7</td><td class="border border-gray-800 p-1"><input type="text" id="p7Name" class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p7ID" class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr class="sub-row hidden"><td class="border border-gray-800 p-1 text-center text-gray-500">8</td><td class="border border-gray-800 p-1"><input type="text" id="p8Name" class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p8ID" class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr class="sub-row hidden"><td class="border border-gray-800 p-1 text-center text-gray-500">9</td><td class="border border-gray-800 p-1"><input type="text" id="p9Name" class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p9ID" class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                    <tr class="sub-row hidden"><td class="border border-gray-800 p-1 text-center text-gray-500">10</td><td class="border border-gray-800 p-1"><input type="text" id="p10Name" class="pdf-input w-full bg-transparent outline-none text-white"></td><td class="border border-gray-800 p-1"><input type="text" id="p10ID" class="pdf-input w-full bg-transparent outline-none text-white"></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Payment Info & POP -->
+                    <div class="bg-navyDark border border-neonGreen/20 p-3 rounded-lg space-y-2 text-xs">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-neonGreen">BANK DETAILS (FNB EFT)</span>
+                            <span class="text-gray-400">Ref: [Team Name] - 5aside</span>
+                        </div>
+                        <p class="text-gray-300">Windsor Sports Center (Pty) Ltd | Acc: 63132137919 | Branch: 210554</p>
+                        
+                        <div class="pt-2 border-t border-gray-800">
+                            <button type="button" onclick="triggerFileSelect()" class="text-neonGreen underline font-bold cursor-pointer no-print">
+                                📎 Tap to upload Proof of Payment (POP)
+                            </button>
+                            <input type="file" id="popUpload" accept="image/*" onchange="previewReceipt(event)" class="hidden">
+                            <div id="previewContainer" class="mt-2 hidden">
+                                <p class="text-[10px] text-gray-400 mb-1">Attached POP Preview:</p>
+                                <img id="receiptPreview" src="" class="max-h-28 border border-gray-700 rounded bg-black/40">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Signatures -->
+                    <div class="pdf-avoid-break space-y-3 pt-2">
+                        <p class="text-[10px] text-gray-400 italic">By signing, we acknowledge and agree to all rules outlined on Page 1.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[10px] text-gray-400">
+                                    <span>CAPTAIN SIGNATURE</span>
+                                    <button type="button" onclick="clearCanvas('captainCanvas')" class="text-red-400 no-print">Clear</button>
+                                </div>
+                                <div class="bg-navyDark border border-gray-800 rounded p-1 relative h-20">
+                                    <canvas id="captainCanvas" width="300" height="80" class="w-full h-full bg-navyDark rounded cursor-crosshair block"></canvas>
+                                    <img id="captainSignatureImage" class="absolute inset-1 w-[calc(100%-8px)] h-[calc(100%-8px)] bg-navyDark rounded hidden object-contain">
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[10px] text-gray-400">
+                                    <span>VICE-CAPTAIN SIGNATURE</span>
+                                    <button type="button" onclick="clearCanvas('viceCaptainCanvas')" class="text-red-400 no-print">Clear</button>
+                                </div>
+                                <div class="bg-navyDark border border-gray-800 rounded p-1 relative h-20">
+                                    <canvas id="viceCaptainCanvas" width="300" height="80" class="w-full h-full bg-navyDark rounded cursor-crosshair block"></canvas>
+                                    <img id="viceCaptainSignatureImage" class="absolute inset-1 w-[calc(100%-8px)] h-[calc(100%-8px)] bg-navyDark rounded hidden object-contain">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="no-print pt-4">
+                        <button type="button" onclick="handleSubmit()" id="submitBtn" class="w-full bg-neonGreen hover:bg-neonGreenHover text-pitchBlack h-12 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                            <span>🚀 Submit Registration & Download Clean PDF</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="text-center space-y-1 text-xs text-gray-400 pt-2">
+                <p><strong>Queries / Direct Submissions:</strong> Muhammed Moola: 063 225 1773</p>
+                <p class="text-[10px]">39 Louis Trichardt Str, Volksrust</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvasStates = { captainCanvas: false, viceCaptainCanvas: false };
+
+        function setupCanvas(id) {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            let drawing = false;
+
+            ctx.fillStyle = '#070B19';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            function getCoords(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return { 
+                    x: (clientX - rect.left) * (canvas.width / rect.width), 
+                    y: (clientY - rect.top) * (canvas.height / rect.height) 
+                };
+            }
+
+            function startDraw(e) {
+                drawing = true;
+                ctx.beginPath();
+                const coords = getCoords(e);
+                ctx.moveTo(coords.x, coords.y);
+                canvasStates[id] = true;
+                if (e.touches) e.preventDefault();
+            }
+
+            function draw(e) {
+                if (!drawing) return;
+                const coords = getCoords(e);
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = '#39FF14';
+                ctx.lineTo(coords.x, coords.y);
+                ctx.stroke();
+                if (e.touches) e.preventDefault();
+            }
+
+            function stopDraw() { drawing = false; ctx.beginPath(); }
+
+            canvas.addEventListener('mousedown', startDraw);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDraw);
+            canvas.addEventListener('mouseleave', stopDraw);
+
+            canvas.addEventListener('touchstart', startDraw, { passive: false });
+            canvas.addEventListener('touchmove', draw, { passive: false });
+            canvas.addEventListener('touchend', stopDraw);
+        }
+
+        function clearCanvas(id) {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#070B19';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            canvasStates[id] = false;
+            
+            const imgId = id === 'captainCanvas' ? 'captainSignatureImage' : 'viceCaptainSignatureImage';
+            document.getElementById(imgId).classList.add('hidden');
+            canvas.classList.remove('hidden');
+        }
+
+        function triggerFileSelect() { document.getElementById('popUpload').click(); }
+
+        function previewReceipt(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const output = document.getElementById('receiptPreview');
+                    output.src = reader.result;
+                    document.getElementById('previewContainer').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function toggleSubstitutes() {
+            const subRows = document.querySelectorAll('.sub-row');
+            const subBtnText = document.getElementById('subBtnText');
+            let isHidden = true;
+
+            subRows.forEach(row => {
+                if (row.classList.contains('hidden')) {
+                    row.classList.remove('hidden');
+                    isHidden = false;
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+
+            if (subBtnText) {
+                subBtnText.innerText = isHidden ? "Show Subs (6-10)" : "Hide Subs (6-10)";
+            }
+        }
+
+        function convertInputsToText() {
+            const inputs = document.querySelectorAll('.pdf-input');
+            inputs.forEach(input => {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'pdf-text-value';
+                
+                if (input.tagName === 'SELECT') {
+                    textSpan.innerText = input.options[input.selectedIndex]?.text || '—';
+                } else {
+                    textSpan.innerText = input.value || '—';
+                }
+
+                input.dataset.originalDisplay = input.style.display;
+                input.style.display = 'none';
+                input.parentNode.insertBefore(textSpan, input.nextSibling);
+            });
+        }
+
+        function restoreInputsFromText() {
+            document.querySelectorAll('.pdf-text-value').forEach(span => span.remove());
+            document.querySelectorAll('.pdf-input').forEach(input => {
+                input.style.display = input.dataset.originalDisplay || '';
+            });
+        }
+
+        function handleSubmit() {
+            const btn = document.getElementById('submitBtn');
+            const teamName = document.getElementById('teamNameField').value.trim();
+            const preferredDivision = document.getElementById('divisionField').value;
+            const capName = document.getElementById('capName').value.trim();
+            const capPhone = document.getElementById('capPhone').value.trim();
+            const capEmail = document.getElementById('capEmail').value.trim();
+
+            if (!teamName || !preferredDivision || !capName || !capPhone || !capEmail) {
+                alert("Please fill out all required team details and captain contact fields!");
+                return;
+            }
+
+            for (let i = 1; i <= 5; i++) {
+                const pName = document.getElementById(`p${i}Name`).value.trim();
+                const pID = document.getElementById(`p${i}ID`).value.trim();
+                if (!pName || !pID) {
+                    alert(`Please provide Full Name & ID Number for Player #${i} (Starting 5 required).`);
+                    return;
+                }
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = `<span>⏳ Generating Official PDF...</span>`;
+            btn.style.opacity = '0.7';
+
+            const hiddenSubRows = [];
+            document.querySelectorAll('.sub-row').forEach(row => {
+                if (row.classList.contains('hidden')) {
+                    hiddenSubRows.push(row);
+                    row.classList.remove('hidden');
+                }
+            });
+
+            ['captainCanvas', 'viceCaptainCanvas'].forEach(id => {
+                const canvas = document.getElementById(id);
+                const imgId = id === 'captainCanvas' ? 'captainSignatureImage' : 'viceCaptainSignatureImage';
+                const img = document.getElementById(imgId);
+                if (canvasStates[id]) {
+                    img.src = canvas.toDataURL('image/png');
+                    img.classList.remove('hidden');
+                    canvas.classList.add('hidden');
+                }
+            });
+
+            convertInputsToText();
+
+            document.querySelectorAll('.no-print').forEach(el => el.style.display = 'none');
+
+            setTimeout(() => {
+                const element = document.getElementById('pdfContainer');
+                const formattedFileName = `${teamName.replace(/[^a-zA-Z0-9]/g, '_')}_Registration.pdf`;
+
+                const opt = {
+                    margin:       0,
+                    filename:     formattedFileName,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { 
+                        scale: 2, 
+                        useCORS: true, 
+                        backgroundColor: '#070B19',
+                        scrollY: 0,
+                        windowWidth: 800
+                    },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                html2pdf().set(opt).from(element).toPdf().get('pdf').then(function(pdfObj) {
+                    return pdfObj.output('blob');
+                }).then(async function(pdfBlob) {
+                    
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = URL.createObjectURL(pdfBlob);
+                    downloadLink.download = formattedFileName;
+                    downloadLink.click();
+
+                    document.querySelectorAll('.no-print').forEach(el => el.style.display = '');
+                    restoreInputsFromText();
+                    
+                    hiddenSubRows.forEach(row => row.classList.add('hidden'));
+
+                    ['captainCanvas', 'viceCaptainCanvas'].forEach(id => {
+                        const imgId = id === 'captainCanvas' ? 'captainSignatureImage' : 'viceCaptainSignatureImage';
+                        document.getElementById(imgId).classList.add('hidden');
+                        document.getElementById(id).classList.remove('hidden');
+                    });
+
+                    const rosterData = {};
+                    for (let i = 1; i <= 10; i++) {
+                        const name = document.getElementById(`p${i}Name`)?.value.trim();
+                        const idNum = document.getElementById(`p${i}ID`)?.value.trim();
+                        if (name || idNum) {
+                            rosterData[`Player_${i}`] = `${name || 'N/A'} (ID: ${idNum || 'N/A'})`;
+                        }
+                    }
+
+                    try {
+                        await fetch("https://formspree.io/f/xvzegnep", {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: JSON.stringify({
+                                Team_Name: teamName,
+                                Division: preferredDivision,
+                                Captain_Name: capName,
+                                Captain_Phone: capPhone,
+                                Captain_Email: capEmail,
+                                Vice_Captain_Name: document.getElementById('vcName')?.value.trim() || 'N/A',
+                                Vice_Captain_Phone: document.getElementById('vcPhone')?.value.trim() || 'N/A',
+                                Vice_Captain_Email: document.getElementById('vcEmail')?.value.trim() || 'N/A',
+                                Roster: rosterData,
+                                Status: "PDF Generated & Submitted"
+                            })
+                        });
+
+                        btn.innerHTML = `<span>✔ Registered & Downloaded!</span>`;
+                        btn.className = "w-full bg-green-600 text-white h-12 rounded-xl text-xs font-black uppercase tracking-widest";
+                        alert(`Success! ${teamName} is registered. The PDF has downloaded to your device.`);
+                    } catch (e) {
+                        btn.disabled = false;
+                        btn.style.opacity = '1';
+                        btn.innerHTML = `<span>✔ PDF Downloaded (Formspree Offline)</span>`;
+                    }
+
+                }).catch(function(err) {
+                    console.error(err);
+                    document.querySelectorAll('.no-print').forEach(el => el.style.display = '');
+                    restoreInputsFromText();
+                    hiddenSubRows.forEach(row => row.classList.add('hidden'));
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btn.innerHTML = `<span>❌ Error. Tap to try again</span>`;
+                    alert("Export failed. Please try again!");
+                });
+            }, 300);
+        }
+
+        setupCanvas('captainCanvas');
+        setupCanvas('viceCaptainCanvas');
+    </script>
+</body>
+</html>
+
